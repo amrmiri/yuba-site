@@ -1,10 +1,37 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-title-ar="الصفحة غير موجودة · يوبا">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="dark">
-<title>Yuba · يوبا</title>
+<title>Page not found · Yuba</title>
+<script>
+/* Language before the first paint (an Arabic visitor never sees English first), the Latin half of
+   the Arabic face fetched early, html.js for the enhanced layout, html.scrolled for the header. The rest is /site.js. */
+(function (d) {
+  var s = null, q = null;
+  try { s = localStorage.getItem('yuba-lang'); } catch (e) {}
+  try { q = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+  if (q === 'ar' || q === 'en') {
+    s = q;
+    try { localStorage.setItem('yuba-lang', q); } catch (e) {}
+    try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {}
+  } else if (s !== 'ar' && s !== 'en') {
+    // no choice saved yet: a phone set to Arabic opens the Arabic page
+    try { if (/^ar(-|$)/i.test((navigator.languages && navigator.languages[0]) || navigator.language || '')) s = 'ar'; } catch (e) {}
+  }
+  d.className = 'js';
+  if (s === 'ar') {
+    d.setAttribute('data-lang', 'ar'); d.lang = 'ar';
+    var l = document.createElement('link');
+    l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
+    l.href = '/fonts/noto-kufi-arabic-latin.woff2';
+    document.head.appendChild(l);
+  }
+  var on = false, f = function () { var y = (window.scrollY || 0) > 8; if (y !== on) { on = y; d.classList.toggle('scrolled', y); } };
+  f(); addEventListener('scroll', f, { passive: true });
+})(document.documentElement);
+</script>
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
@@ -12,30 +39,43 @@
 <meta name="theme-color" content="#0b0c0f">
 <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/site.css">
+<script src="/site.js" async></script>
+<noscript><style>body [lang="ar"]{display:revert !important}.langbtn{display:none}</style></noscript>
 </head>
 <body class="p-404">
+<a class="skip" href="#main"><span lang="en">Skip to content</span><span lang="ar">انتقل إلى المحتوى</span></a>
 <header class="site">
   <div class="head-in">
-    <a class="lockup" href="/" aria-label="Yuba · يوبا, home">
+    <a class="lockup" href="/" aria-label="Yuba · يوبا, home" data-aria-en="Yuba · يوبا, home" data-aria-ar="يوبا · Yuba، الصفحة الرئيسية">
       <span class="latin">YUBA</span><span class="dot"></span><span class="arabic">يوبا</span>
     </a>
+    <button class="langbtn" type="button">
+      <span lang="ar">العربية</span><span lang="en">English</span>
+    </button>
   </div>
 </header>
 <div class="page">
-  <main class="lost">
+  <main class="lost" id="main">
     <p class="lost-code" aria-hidden="true">404</p>
-    <h1>There is no page here.</h1>
-    <i class="tick"></i>
-    <p><a class="back" href="/">Back to yuba-app.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+    <div lang="en">
+      <h1>There is no page here.</h1>
+      <i class="tick"></i>
+      <p><a class="back" href="/">Back to yuba-app.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+    </div>
+    <div lang="ar" dir="rtl">
+      <h1>هذه الصفحة غير موجودة.</h1>
+      <i class="tick"></i>
+      <p><a class="back" href="/">العودة إلى الصفحة الرئيسية <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+    </div>
   </main>
   <footer class="site">
     <a class="lockup small" href="/"><span class="latin">YUBA</span><span class="dot"></span><span class="arabic">يوبا</span></a>
-    <span>Built in Saudi Arabia</span>
-    <span class="quiet">No cookies, no trackers.</span>
+    <span><span lang="en">Built in Saudi Arabia</span><span lang="ar">صُنع في السعودية</span></span>
+    <span class="quiet"><span lang="en">No cookies, no trackers.</span><span lang="ar">لا كوكيز ولا تتبّع.</span></span>
     <span class="spacer"></span>
-    <a href="/privacy/">Privacy</a>
-    <a href="/terms/">Terms</a>
-    <a href="/support/">Support</a>
+    <a href="/privacy/"><span lang="en">Privacy</span><span lang="ar">الخصوصية</span></a>
+    <a href="/terms/"><span lang="en">Terms</span><span lang="ar">الشروط</span></a>
+    <a href="/support/"><span lang="en">Support</span><span lang="ar">الدعم</span></a>
     <a href="mailto:support@yuba-app.com">support@yuba-app.com</a>
   </footer>
 </div>

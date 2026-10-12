@@ -8,6 +8,8 @@
    device-framed screens, section rhythm, quiet motion that never hides content.
    Interaction pass, 12 Oct 2026: a fixed header that condenses on scroll (menu on a phone,
    contents on the policies), one focus ring, finger-sized targets, the screens open larger.
+   Content pass, 12 Oct 2026: the hero names the two reasons to try it (2 minutes, 60 free days),
+   the 404 speaks both languages, nothing breaks between 980 and 1240 or without JavaScript.
    Behaviour lives in /site.js; the language is chosen in each page's <head> before first paint. */
 
 /* Fonts live on this site (12 Oct 2026): no request leaves for Google, so the footer can say no trackers. */
@@ -91,6 +93,11 @@ html[data-lang="ar"] a[lang="ar"] { display: inline !important; }
 /* the larger view of a screen carries the page language (font, direction, screen readers) */
 html[data-lang="ar"] dialog[lang="ar"][open] { display: grid !important; }
 html[data-lang="ar"] body { direction: rtl; }
+
+/* Without JavaScript the noscript rule shows both languages: keep each pair apart
+   ("Privacy الخصوصية", not "Privacyالخصوصية"), and the 404's two messages too. */
+html:not(.js) span[lang="en"]:has(+ span[lang="ar"]) { margin-right: 0.6em; }
+html:not(.js) .lost div[lang="ar"] { margin-top: 44px; }
 
 .langbtn [lang="en"] { display: none !important; }
 html:not([data-lang="ar"]) .langbtn [lang="ar"] { display: inline !important; }
@@ -294,9 +301,15 @@ td { overflow-wrap: break-word; }
 .soon i { position: relative; width: 7px; height: 7px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 10px rgba(95, 184, 163, 0.85); flex: none; }
 .home[lang="ar"] .soon { font-size: 14.5px; line-height: 1.6; padding: 5px 13px 5px 16px; }
 @media (max-width: 360px) { .soon { font-size: 14px; padding-inline: 12px 14px; } }
-.get-note { font-size: 14px; color: var(--ink2); line-height: 1.65; padding-inline-start: 4px; text-wrap: pretty; }
-.get-note b { color: var(--teal); font-weight: 500; white-space: nowrap; }
-.get-note .droid { display: block; color: var(--ink3); }
+/* Two short lines of facts: the phone it needs, then the two reasons to try it. Each fact keeps
+   its words together; the dot before a fact that starts a new line falls in the clipped margin,
+   so a narrow phone never shows a line that begins or ends with a lone separator. */
+.get-note { font-size: 14px; color: var(--ink2); line-height: 1.65; padding-inline-start: 4px; overflow: hidden; }
+.get-note .specs { list-style: none; display: flex; flex-wrap: wrap; margin: 0; margin-inline-start: -15px; padding: 0; }
+.get-note .specs li { position: relative; margin: 0; padding-inline-start: 15px; white-space: nowrap; }
+.get-note .specs li::before { content: "\B7"; position: absolute; inset-inline-start: 0; width: 15px; text-align: center; color: var(--ink3); }
+.get-note .perks { margin-top: 2px; }
+.get-note .perks li { color: var(--teal); font-weight: 500; }
 .home[lang="ar"] .get-note { font-size: 14px; line-height: 1.95; }
 
 /* the picture: three bank texts become a line in the month */
@@ -478,7 +491,7 @@ td { overflow-wrap: break-word; }
 }
 .shots figure, .shots figcaption { padding-inline: 9px; }
 .shots figure { padding-top: 9px; }
-.shots figcaption { margin-top: 24px; font-size: 14px; color: var(--ink2); text-align: center; line-height: 1.4; text-wrap: pretty; }
+.shots figcaption { margin-top: 24px; font-size: 14px; color: var(--ink2); text-align: center; line-height: 1.4; text-wrap: balance; }
 .home[lang="ar"] .shots figcaption { font-size: 13.5px; line-height: 1.8; text-align: center; }
 /* a small "enlarge" mark after each caption, once the larger view exists */
 .js .shots figcaption::after {
@@ -647,14 +660,20 @@ td { overflow-wrap: break-word; }
   .plans { grid-template-columns: 1fr 1fr; }
   .plan-note { grid-column: 1 / -1; }
 }
+/* "/ month" and "/ year" stay with their figure */
+.plan-price small { white-space: nowrap; }
 @media (min-width: 980px) {
-  .price-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 80px; }
-  .plans { margin-top: 38px; }
   .plan { padding: 28px 28px 30px; min-height: 220px; }
   .plan-price { font-size: 42px; margin-top: 22px; }
   .plan-price .cur { font-size: 17px; }
   .free p { font-size: 17px; }
   .home[lang="ar"] .free p { font-size: 16px; }
+}
+/* the words beside the plans only once each plan has room for "SAR 179.99 / year" on one line
+   (between 980 and 1240 the figure used to break as "179.99 /" over "year") */
+@media (min-width: 1240px) {
+  .price-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 80px; }
+  .plans { margin-top: 38px; }
 }
 
 /* questions */
@@ -664,6 +683,7 @@ td { overflow-wrap: break-word; }
 .faq summary {
   list-style: none; cursor: pointer; padding: 20px 0; color: var(--ink); font-size: 17px; font-weight: 500; line-height: 1.4;
   display: flex; justify-content: space-between; gap: 22px; align-items: center; transition: color 0.2s;
+  text-wrap: balance; /* a question that wraps never leaves its last word alone */
 }
 .faq summary::-webkit-details-marker { display: none; }
 /* a drawn plus in a ring; open turns it into a close mark */
@@ -716,7 +736,8 @@ html[data-lang="ar"] .door .sub { line-height: 1.8; }
 html[data-lang="ar"] .door .mark svg { transform: scaleX(-1); }
 .door:hover .mark { color: var(--ink); border-color: var(--border); transform: translateX(3px); }
 html[data-lang="ar"] .door:hover .mark { transform: translateX(-3px); }
-@media (min-width: 760px) { .doors { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
+/* side by side only where each tile has room for its line (a tablet stacks them; the address never breaks) */
+@media (min-width: 980px) { .doors { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
 
 /* ── footer ── */
 footer.site {
@@ -861,7 +882,7 @@ table:not(.facts) td:first-child { color: var(--ink); }
   font-size: 96px; font-weight: 600; letter-spacing: -0.05em; line-height: 1; color: transparent;
   -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.22); margin: 0 0 26px; font-variant-numeric: tabular-nums;
 }
-.lost h1 { font-size: 34px; letter-spacing: -0.035em; line-height: 1.1; margin: 0; }
+.lost h1 { font-size: 34px; letter-spacing: -0.035em; line-height: 1.1; margin: 0; text-wrap: balance; }
 .lost .tick { display: block; width: 52px; height: 4px; border-radius: 2px; background: var(--red); box-shadow: 0 0 14px rgba(227, 25, 55, 0.5); margin: 24px 0 28px; }
 .lost .back {
   display: inline-flex; align-items: center; gap: 10px; padding: 11px 18px; border-radius: 999px;
@@ -870,7 +891,14 @@ table:not(.facts) td:first-child { color: var(--ink); }
 }
 .lost .back:hover { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.2); text-decoration: none; }
 .lost .back svg { width: 15px; height: 15px; color: var(--teal); }
-@media (min-width: 561px) { .lost-code { font-size: 150px; } .lost h1 { font-size: 52px; } }
+.lost [lang="ar"] h1 { font-size: 30px; letter-spacing: 0; line-height: 1.5; }
+.lost [lang="ar"] .tick { margin: 18px 0 26px; }
+.lost [lang="ar"] .back svg { transform: scaleX(-1); }
+@media (min-width: 561px) {
+  .lost-code { font-size: 150px; }
+  .lost h1 { font-size: 52px; }
+  .lost [lang="ar"] h1 { font-size: 44px; line-height: 1.45; }
+}
 
 
 /* ── motion: quiet, and only for people who have not asked for less. Every animation ends

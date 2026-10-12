@@ -66,7 +66,7 @@
     <nav class="jump" aria-label="Sections" data-aria-en="Sections" data-aria-ar="أقسام الصفحة">
       <a href="#how"><span lang="en">How it works</span><span lang="ar">كيف يعمل</span></a>
       <a href="#price"><span lang="en">Price</span><span lang="ar">السعر</span></a>
-      <a href="#faq"><span lang="en">Questions</span><span lang="ar">أسئلة</span></a>
+      <a href="#faq"><span lang="en">Questions</span><span lang="ar">أسئلة شائعة</span></a>
     </nav>
     <button class="langbtn" type="button">
       <span lang="ar">العربية</span><span lang="en">English</span>
@@ -98,7 +98,10 @@
       <p class="lede">Yuba reads the texts your bank already sends, <strong>right on your iPhone</strong>, and shows you where your money went.</p>
       <div class="get">
         <span class="soon"><i></i>Coming soon to the App Store</span>
-        <span class="get-note">iPhone, iOS 17 or later · <b>ready in around 2 minutes</b><span class="droid">Android to follow.</span></span>
+        <div class="get-note">
+          <ul class="specs"><li>iPhone, iOS 17 or later</li><li>Android to follow</li></ul>
+          <ul class="specs perks"><li>Ready in around 2 minutes</li><li>Free for 60 days</li></ul>
+        </div>
       </div>
       </div>
       <div class="hero-art">
@@ -143,7 +146,7 @@ At: JAHEZ</p>
       <div class="band how" id="how">
         <div class="band-head"><h2 class="kicker">How it works</h2></div>
         <ol class="steps">
-          <li><span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7" width="19" height="10" rx="5"/><circle cx="16.5" cy="12" r="2.6"/></svg></span><span class="num">01</span><h3>Set up once</h3><p>On iPhone, in Apple’s Shortcuts app. On Android, a single permission.</p></li>
+          <li><span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7" width="19" height="10" rx="5"/><circle cx="16.5" cy="12" r="2.6"/></svg></span><span class="num">01</span><h3>Set up once</h3><p>On iPhone, in Apple’s Shortcuts app. On Android, one permission.</p></li>
           <li><span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19M6.5 14.5h4"/></svg></span><span class="num">02</span><h3>Pay as usual</h3><p>Yuba reads your new bank texts, from any Saudi bank, on your phone, and asks you if one is unclear.</p></li>
           <li><span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17M6.5 17v-5M12 17V6.5M17.5 17v-8"/></svg></span><span class="num">03</span><h3>See your month</h3><p>Today, this month, and every transaction behind it.</p></li>
         </ol>
@@ -178,7 +181,7 @@ At: JAHEZ</p>
             <p class="kicker">Price</p>
             <h2 class="band-title">Free for 60 days.</h2>
             <p>From your first bank text, with everything open. You pay nothing unless you choose a membership.</p>
-            <p>Without one, every transaction stays visible, Yuba keeps reading your texts, and export always works. Totals, averages and charts need a membership, except for the months that ended inside your free days.</p>
+            <p>From day 61, totals, averages and charts need a membership, except for the months that ended inside your free days. Without one, every transaction stays visible, Yuba keeps reading your texts, and export always works.</p>
           </div>
           <div class="plans">
             <div class="plan"><span class="plan-name">Monthly</span><span class="plan-price"><span class="cur">SAR</span> 29.99<small> / month</small></span></div>
@@ -194,7 +197,7 @@ At: JAHEZ</p>
           <details id="q-messages"><summary>Does Yuba read all my messages?</summary><p>No. On iPhone, Shortcuts hands Yuba only texts that contain SAR, SR or ريال. Yuba never sees the rest, and what it does get, it reads on your phone.</p></details>
           <details id="q-banks"><summary>Which banks does it work with?</summary><p>All Saudi banks. Yuba is made for the transaction texts Saudi banks send, in Arabic and English, and it keeps learning new wordings from the people who use it. When a text says money moved in a wording Yuba hasn’t learned yet, it asks you instead of guessing. Teach Yuba, in Settings, writes you an email with that wording, every digit a 9 and people’s names cut to initials, for you to send us.</p></details>
           <details id="q-shortcuts"><summary>Why the Shortcuts app on iPhone?</summary><p>Apple doesn’t let apps read your messages. Instead, Apple’s Shortcuts app, set up once, hands Yuba the bank texts that mention riyals as they arrive. It’s Apple’s own tool, and you stay in control: you can turn it off any time. It takes around 2 minutes.</p></details>
-          <details id="q-online"><summary>Does anything leave my phone?</summary><p>Yuba sends nothing about your money. It has no server and no account. It goes online to check for its own updates, and memberships run through Apple. Like every app, Yuba is included in your phone’s own backup, under your Apple Account. <a href="/privacy/">Every detail is on the privacy page.</a></p></details>
+          <details id="q-online"><summary>Does anything leave my phone?</summary><p>Yuba sends nothing about your money. It has no server and no account. It goes online only to check for its own updates (a check that carries a random install number), and memberships run through Apple. Like every app, Yuba is included in your phone’s own backup, under your Apple Account. <a href="/privacy/">Every detail is on the privacy page.</a></p></details>
           <details id="q-phones"><summary>What if I change phones?</summary><p>Your history lives on your phone and in your phone’s own backup, so a new iPhone restored from that backup should bring it along. You can also export every transaction as a spreadsheet at any time.</p></details>
           <details id="q-android"><summary>Is Yuba on Android?</summary><p>Coming soon. On Android there is no Shortcuts step: one permission does it.</p></details>
         </div>
@@ -210,7 +213,10 @@ At: JAHEZ</p>
       <p class="lede">يقرأ يوبا رسائل بنكك <strong>على جوالك نفسه</strong>، ويرتّب مصاريفك أولًا بأول.</p>
       <div class="get">
         <span class="soon"><i></i>قريبًا على App Store</span>
-        <span class="get-note">على iPhone بنظام iOS 17 أو أحدث · <b>الإعداد يستغرق نحو دقيقتين</b><span class="droid">ونسخة Android في الطريق.</span></span>
+        <div class="get-note">
+          <ul class="specs"><li>على iPhone بنظام iOS 17 أو أحدث</li><li>ونسخة Android في الطريق</li></ul>
+          <ul class="specs perks"><li>جاهز خلال نحو دقيقتين</li><li>مجاني لمدة 60 يومًا</li></ul>
+        </div>
       </div>
       </div>
       <div class="hero-art">
@@ -275,13 +281,13 @@ At: JAHEZ</p>
           <a class="shot" href="/shots/ar/2-activity.jpg"><figure><img src="/shots/ar/2-activity.jpg" width="600" height="1304" loading="lazy" alt="العمليات: كل عملية حسب اليوم" decoding="async"><figcaption>كل عملياتك</figcaption></figure></a>
           <a class="shot" href="/shots/ar/3-trend.jpg"><figure><img src="/shots/ar/3-trend.jpg" width="600" height="1304" loading="lazy" alt="الاتجاه: مصاريف الأسبوع وأين ذهبت" decoding="async"><figcaption>أين ذهبت فلوسك</figcaption></figure></a>
           <a class="shot" href="/shots/ar/4-day-by-day.jpg"><figure><img src="/shots/ar/4-day-by-day.jpg" width="600" height="1304" loading="lazy" alt="يومًا بيوم: كل يوم مقارنة بمتوسطك" decoding="async"><figcaption>يومًا بيوم</figcaption></figure></a>
-          <a class="shot" href="/shots/ar/5-add.jpg"><figure><img src="/shots/ar/5-add.jpg" width="600" height="1304" loading="lazy" alt="إضافة: مصاريفك النقدية بيدك" decoding="async"><figcaption>النقد، تضيفه بنفسك</figcaption></figure></a>
+          <a class="shot" href="/shots/ar/5-add.jpg"><figure><img src="/shots/ar/5-add.jpg" width="600" height="1304" loading="lazy" alt="إضافة: مصاريفك النقدية تسجّلها بنفسك" decoding="async"><figcaption>أضف مصاريفك النقدية</figcaption></figure></a>
         </div>
       </div>
 
       <div class="band promise" id="privacy-ar">
         <span class="lock" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg></span>
-        <div><h2>بياناتك المالية تبقى على جوالك.</h2><p>لا ربط بحسابك البنكي، ولا تسجيل، ولا إعلانات، ولا يصلنا شيء يخص أموالك إلا ما ترسله بنفسك. <a href="/privacy/">وعد الخصوصية كاملًا ›</a></p></div>
+        <div><h2>بياناتك المالية تبقى على جوالك.</h2><p>لا ربط بحسابك البنكي، ولا تسجيل، ولا إعلانات. ولا يصلنا شيء عن مالك إلا ما ترسله أنت. <a href="/privacy/">وعد الخصوصية كاملًا ›</a></p></div>
       </div>
 
       <div class="band" id="price-ar">
@@ -290,11 +296,11 @@ At: JAHEZ</p>
             <p class="kicker">السعر</p>
             <h2 class="band-title">مجاني لمدة 60 يومًا.</h2>
             <p>من أول رسالة بنكية، وكل المزايا مفتوحة. ولا تدفع شيئًا ما لم تختر عضوية.</p>
-            <p>ومن دونها تبقى كل عملياتك ظاهرة، ويستمر يوبا في قراءة رسائلك، والتصدير متاح دائمًا. أما الإجماليات والمتوسطات والرسوم البيانية فتحتاج عضوية، إلا للأشهر التي اكتملت خلال أيامك المجانية.</p>
+            <p>وابتداءً من اليوم 61 تحتاج المجاميع والمتوسطات والرسوم البيانية إلى عضوية، إلا للأشهر التي اكتملت خلال أيامك المجانية. ومن دونها تبقى كل عملياتك ظاهرة، ويستمر يوبا في قراءة رسائلك، والتصدير متاح دائمًا.</p>
           </div>
           <div class="plans">
-            <div class="plan"><span class="plan-name">شهري</span><span class="plan-price">29.99 <span class="cur">ر.س</span><small> / شهريًا</small></span></div>
-            <div class="plan best"><span class="plan-name">سنوي</span><span class="plan-price">179.99 <span class="cur">ر.س</span><small> / سنويًا</small></span><span class="plan-sub">نحو 15 ر.س شهريًا، ويبدأ بشهر مجاني للمشتركين الجدد.</span></div>
+            <div class="plan"><span class="plan-name">شهري</span><span class="plan-price">29.99 <span class="cur">ر.س</span><small> شهريًا</small></span></div>
+            <div class="plan best"><span class="plan-name">سنوي</span><span class="plan-price">179.99 <span class="cur">ر.س</span><small> سنويًا</small></span><span class="plan-sub">نحو 15 ر.س شهريًا، ويبدأ بشهر مجاني للمشتركين الجدد.</span></div>
             <p class="plan-note">عبر App Store، ويمكنك الإلغاء متى شئت من إعدادات حساب Apple.</p>
           </div>
         </div>
@@ -304,11 +310,11 @@ At: JAHEZ</p>
         <h2 class="band-title">أسئلة شائعة</h2>
         <div class="faq">
           <details id="q-messages-ar"><summary>هل يقرأ يوبا كل رسائلي؟</summary><p>لا. على iPhone لا تمرّر «الاختصارات» إلى يوبا إلا الرسائل التي فيها SAR أو SR أو «ريال». بقية رسائلك لا يراها يوبا، وما يصله يقرؤه على جوالك نفسه.</p></details>
-          <details id="q-banks-ar"><summary>مع أي البنوك يعمل يوبا؟</summary><p>مع كل البنوك السعودية. يوبا مصمَّم لرسائل العمليات التي ترسلها البنوك السعودية، بالعربية والإنجليزية، ويتعلّم الصياغات الجديدة باستمرار من مستخدميه. وإذا قالت رسالة إن مالًا تحرّك بصياغة لم يتعلّمها بعد، يسألك بدل أن يخمّن. ومن «الإعدادات › علِّم يوبا» يمكنك أن ترسل لنا تلك الصياغة، وكل رقم فيها 9، وأسماء الأشخاص مختصرة إلى أحرفها الأولى.</p></details>
+          <details id="q-banks-ar"><summary>مع أي البنوك يعمل يوبا؟</summary><p>مع كل البنوك السعودية. يوبا مصمَّم لرسائل العمليات التي ترسلها البنوك السعودية، بالعربية والإنجليزية، ويتعلّم الصياغات الجديدة باستمرار من مستخدميه. وإذا قالت رسالة إن مالًا تحرّك بصياغة لم يتعلّمها بعد، يسألك بدل أن يخمّن. و«علِّم يوبا» في الإعدادات يكتب لك رسالة بريد بتلك الصياغة، بعد أن يصير كل رقم فيها 9 وتُختصر أسماء الأشخاص إلى أحرفها الأولى، لترسلها إلينا بنفسك.</p></details>
           <details id="q-shortcuts-ar"><summary>لماذا تطبيق «الاختصارات» على iPhone؟</summary><p>لأن Apple لا تسمح للتطبيقات بقراءة رسائلك. تُعدّ «الاختصارات» مرة واحدة، فتسلّم يوبا رسائل البنك التي تذكر الريال حين تصل. هي أداة من Apple نفسها، والأمر بيدك: توقفها متى شئت. والإعداد يستغرق نحو دقيقتين.</p></details>
-          <details id="q-online-ar"><summary>هل يخرج شيء من جوالي؟</summary><p>يوبا لا يرسل شيئًا يخص أموالك، فلا خادم له ولا حساب. يتصل بالإنترنت ليتحقق من تحديثاته، والعضوية تتم عبر Apple. وككل تطبيق، يُحفظ يوبا ضمن النسخة الاحتياطية لجوالك تحت حساب Apple الخاص بك. <a href="/privacy/">التفاصيل كلها في صفحة الخصوصية.</a></p></details>
-          <details id="q-phones-ar"><summary>ماذا لو غيّرت جوالي؟</summary><p>سجلّك محفوظ على جوالك وفي نسخته الاحتياطية، فإذا استعدت جوالك الجديد من تلك النسخة فالمفترض أن يعود معه. ويمكنك أيضًا في أي وقت تصدير كل عملياتك إلى جدول بيانات.</p></details>
-          <details id="q-android-ar"><summary>هل يوبا متوفر على Android؟</summary><p>في الطريق. وعلى Android لا حاجة لتطبيق «الاختصارات»: يكفي إذن واحد.</p></details>
+          <details id="q-online-ar"><summary>هل يخرج شيء من جوالي؟</summary><p>يوبا لا يرسل شيئًا عن مالك، فلا خادم له ولا حساب. ولا يتصل بالإنترنت إلا ليتحقق من تحديثاته، ويحمل هذا التحقق رقم تثبيت عشوائيًا، أما العضوية فتمرّ عبر Apple. وككل تطبيق، يُحفظ يوبا ضمن النسخة الاحتياطية لجوالك تحت حساب Apple الخاص بك. <a href="/privacy/">التفاصيل كلها في صفحة الخصوصية.</a></p></details>
+          <details id="q-phones-ar"><summary>ماذا لو غيّرت جوالي؟</summary><p>سجلّك محفوظ على جوالك وفي نسخته الاحتياطية، فإذا استعدت جوالك الجديد من تلك النسخة فمن المفترض أن يعود معه. ويمكنك أيضًا في أي وقت تصدير كل عملياتك إلى جدول بيانات.</p></details>
+          <details id="q-android-ar"><summary>هل يوبا متوفر على Android؟</summary><p>قريبًا. وعلى Android لا حاجة إلى تطبيق «الاختصارات»: يكفي إذن واحد.</p></details>
         </div>
       </div>
     </section>
