@@ -43,7 +43,9 @@ body {
    Both languages live in the DOM; html[data-lang] decides which
    shows. No JS = English shows (the safe default). The toggle button
    is the one exception: it always names the OTHER language. */
-[lang="ar"] { display: none !important; }
+/* body-scoped: the script also stamps <html lang="ar">, and an unscoped rule hid the
+   whole page in Arabic (live from 1 Sep to 12 Oct 2026). */
+body [lang="ar"] { display: none !important; }
 html[data-lang="ar"] [lang="en"] { display: none !important; }
 html[data-lang="ar"] section[lang="ar"],
 html[data-lang="ar"] article[lang="ar"],
@@ -57,7 +59,7 @@ html:not([data-lang="ar"]) .langbtn [lang="ar"] { display: inline !important; }
 html[data-lang="ar"] .langbtn [lang="en"] { display: inline !important; }
 html[data-lang="ar"] .langbtn [lang="ar"] { display: none !important; }
 
-[lang="ar"] {
+body [lang="ar"] {
   font-family: var(--kufi);
   direction: rtl;
   text-align: right;
@@ -196,4 +198,126 @@ footer.site .spacer { flex: 1; }
   .hero h1 { font-size: 30px; }
   .hero[lang="ar"] h1 { font-size: 27px; }
   .hero { padding-top: 4vh; }
+}
+
+/* ── home: the introduction (12 Oct 2026) — the same story as the one-pager
+   (Rasid repo docs/business/intro): headline, bank texts becoming a month,
+   three steps, the promise, the way in. The card inside the picture keeps the
+   app's own geometry in Arabic, exactly as Yuba draws it. ── */
+.home { padding-top: 6vh; }
+.home h1 { font-size: 40px; line-height: 1.08; letter-spacing: -0.035em; margin: 0; max-width: none; }
+.home[lang="ar"] h1 { font-size: 34px; line-height: 1.5; letter-spacing: 0; }
+/* each line balances on its own, so a phone never leaves one word alone */
+.home h1 .l { display: block; text-wrap: balance; }
+.pace span, .steps p, .promise p, .promise h2 { text-wrap: pretty; }
+.home .tick {
+  display: block; width: 64px; height: 5px; border-radius: 3px; background: var(--red);
+  box-shadow: 0 0 18px rgba(227, 25, 55, 0.55); margin: 22px 0 20px;
+}
+.home .lede { font-size: 17px; line-height: 1.6; margin: 0; max-width: 34em; }
+.home .lede strong { font-weight: 500; }
+
+.get { margin-top: 26px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+.soon {
+  display: inline-flex; align-items: center; gap: 9px; padding: 11px 18px; border-radius: 10px;
+  background: var(--surface); border: 1px solid rgba(255, 255, 255, 0.12); color: var(--ink);
+  font-size: 14.5px; font-weight: 500; line-height: 1.2;
+}
+.soon i { width: 7px; height: 7px; border-radius: 50%; background: var(--teal-bright); box-shadow: 0 0 9px rgba(95, 184, 163, 0.8); flex: none; }
+.get-note { font-size: 13px; color: var(--ink3); line-height: 1.5; }
+.get-note b { color: var(--teal-bright); font-weight: 500; }
+
+/* the picture */
+.stage { margin: 52px 0 0; display: grid; grid-template-columns: 214px 46px 1fr; align-items: center; }
+.texts { position: relative; height: 176px; }
+.bubble {
+  position: absolute; left: 0; right: 0; margin: 0;
+  background: #23252c; color: #e8eaee; border-radius: 16px 16px 16px 5px;
+  padding: 11px 15px; font-size: 13px; line-height: 1.45; white-space: pre-line;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+}
+.bubble .from { display: block; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); margin-bottom: 4px; }
+.bubble.b3 { top: 0; transform: scale(0.88); transform-origin: top left; background: #17181c; color: #5d626b; }
+.bubble.b3 .from { color: #4a4e56; }
+.bubble.b2 { top: 24px; transform: scale(0.94); transform-origin: top left; background: #1c1e23; color: #80858d; }
+.bubble.b2 .from { color: #5d626b; }
+.bubble.b1 { top: 50px; }
+.flow { display: flex; align-items: center; justify-content: center; }
+.flow svg { width: 40px; height: 28px; overflow: visible; filter: drop-shadow(0 0 7px rgba(95, 184, 163, 0.5)); }
+
+.month {
+  background: #18181c; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 70px rgba(95, 184, 163, 0.10);
+  padding: 14px 16px 13px; line-height: 1.45; color: var(--ink2);
+  font-family: var(--latin); direction: ltr; text-align: left;
+}
+.newrow { display: flex; align-items: center; gap: 11px; padding-bottom: 11px; border-bottom: 1px solid var(--hairline); }
+.newrow .ico { width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; flex: none; background: rgba(95, 184, 163, 0.16); color: var(--teal-bright); }
+.newrow .ico svg { width: 18px; height: 18px; }
+.newrow .who { flex: 1; min-width: 0; }
+.newrow .name { font-size: 14.5px; color: var(--ink); font-weight: 500; line-height: 1.25; }
+.newrow .meta { font-size: 11.5px; color: var(--ink3); }
+.newrow .amt { font-size: 16px; color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.live { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--teal-bright); box-shadow: 0 0 8px rgba(95, 184, 163, 0.8); margin-inline-end: 5px; vertical-align: 1px; }
+.month .k { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink2); margin-top: 11px; }
+.month .fig { font-size: 34px; font-weight: 600; letter-spacing: -0.04em; color: var(--ink); line-height: 1.1; margin-top: 2px; font-variant-numeric: tabular-nums; }
+.month .fig small { font-size: 13px; font-weight: 400; letter-spacing: 0; color: var(--ink2); margin-inline-start: 5px; }
+.cats { margin-top: 9px; display: grid; gap: 5px; }
+.cat { display: grid; grid-template-columns: 108px 1fr 38px; align-items: center; gap: 9px; font-size: 12px; }
+.cat .n { white-space: nowrap; }
+.cat .bar { height: 6px; border-radius: 3px; background: rgba(255, 255, 255, 0.06); overflow: hidden; }
+.cat .bar i { display: block; height: 100%; border-radius: 3px; }
+.cat .v { text-align: right; color: var(--ink); font-variant-numeric: tabular-nums; }
+.pace { margin-top: 11px; padding-top: 10px; border-top: 1px solid var(--hairline); font-size: 13px; color: var(--ink); display: flex; align-items: center; gap: 7px; }
+.pace b { color: var(--teal-bright); font-weight: 600; }
+.pace svg { width: 14px; height: 14px; color: var(--teal-bright); flex: none; }
+.stage-note { margin: 10px 0 0; text-align: end; font-size: 11.5px; color: var(--ink3); }
+
+/* three steps */
+.steps { list-style: none; margin: 52px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.steps li { margin: 0; border-top: 1px solid var(--hairline); padding-top: 13px; }
+.steps .num { font-size: 12px; font-weight: 500; color: var(--teal-bright); letter-spacing: 0.1em; font-variant-numeric: tabular-nums; }
+.steps h3 { font-size: 18px; font-weight: 600; color: var(--ink); letter-spacing: -0.015em; line-height: 1.3; margin: 4px 0 4px; }
+.steps p { font-size: 14.5px; line-height: 1.55; margin: 0; }
+
+/* the promise */
+.promise { margin-top: 48px; display: flex; align-items: center; gap: 16px; }
+.promise .lock { width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.12); display: grid; place-items: center; flex: none; background: rgba(255, 255, 255, 0.03); color: var(--ink); }
+.promise .lock svg { width: 21px; height: 21px; }
+.promise h2 { font-size: 22px; letter-spacing: -0.02em; line-height: 1.25; margin: 0; }
+.promise p { font-size: 15px; margin: 3px 0 0; }
+
+/* Arabic: prose right to left, Kufi with its own taller lines, no tracking */
+.home[lang="ar"] .lede { font-size: 16.5px; line-height: 2; }
+.home[lang="ar"] .tick { margin: 14px 0 16px; }
+.home[lang="ar"] .soon { font-size: 14px; line-height: 1.5; }
+.home[lang="ar"] .get-note { font-size: 13px; line-height: 1.9; }
+.home[lang="ar"] .texts { height: 190px; }
+.home[lang="ar"] .bubble { line-height: 1.6; text-align: right; border-radius: 16px 16px 5px 16px; font-family: var(--kufi); font-size: 12.5px; }
+.home[lang="ar"] .bubble .from { letter-spacing: 0; font-size: 10.5px; }
+.home[lang="ar"] .bubble.b3, .home[lang="ar"] .bubble.b2 { transform-origin: top right; }
+.home[lang="ar"] .flow svg { transform: scaleX(-1); }
+.home[lang="ar"] .month { font-family: "Space Grotesk", "Noto Kufi Arabic", sans-serif; font-size: 15px; line-height: 1.5; }
+.home[lang="ar"] .month .k { letter-spacing: 0; font-size: 11.5px; text-transform: none; }
+.home[lang="ar"] .cat { font-size: 12px; }
+.home[lang="ar"] .stage-note { letter-spacing: 0; }
+.home[lang="ar"] .steps h3 { letter-spacing: 0; line-height: 1.6; font-size: 17px; }
+.home[lang="ar"] .steps p { font-size: 14px; line-height: 1.9; }
+.home[lang="ar"] .promise h2 { letter-spacing: 0; line-height: 1.6; font-size: 20px; }
+.home[lang="ar"] .promise p { font-size: 14px; line-height: 1.9; margin: 0; }
+
+@media (max-width: 560px) {
+  .home { padding-top: 3vh; }
+  .home h1 { font-size: 31px; }
+  .home[lang="ar"] h1 { font-size: 28px; }
+  .home .lede { font-size: 16px; }
+  .stage { grid-template-columns: 1fr; margin-top: 40px; }
+  .texts { width: 82%; height: 168px; }
+  .home[lang="ar"] .texts { height: 182px; }
+  .flow { height: 46px; }
+  .flow svg, .home[lang="ar"] .flow svg { transform: rotate(90deg); }
+  .steps { grid-template-columns: 1fr; gap: 18px; margin-top: 40px; }
+  .promise { margin-top: 38px; align-items: flex-start; }
+  .promise h2 { font-size: 19px; }
+  .home[lang="ar"] .promise h2 { font-size: 18px; }
 }

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="dark">
 <title>Yuba · يوبا</title>
-<meta name="description" content="Yuba turns your bank texts into a private spending ledger — read on your phone, kept on your phone.">
+<meta name="description" content="Your bank texts you all month. Yuba adds it up — it reads the texts your bank already sends, right on your iPhone, and shows you where your money went.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23141519'/><rect x='26' y='26' width='12' height='12' fill='%23e31937'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,13 +26,120 @@
   </header>
 
   <main>
-    <section class="hero" lang="en">
-      <h1>Your money stays on your phone.</h1>
-      <p class="lede">Yuba turns your bank texts into a private spending ledger — read on your phone, kept on your phone. No accounts, no servers, no tracking. Built in Saudi Arabia.</p>
+    <!-- ── English ── -->
+    <section class="home" lang="en">
+      <h1><span class="l">Your bank texts you all month.</span> <span class="l">Yuba adds it up.</span></h1>
+      <i class="tick"></i>
+      <p class="lede">Yuba reads the texts your bank already sends, <strong>right on your iPhone</strong>, and shows you where your money went.</p>
+      <div class="get">
+        <span class="soon"><i></i>Coming soon to the App Store</span>
+        <span class="get-note">For iPhone · iOS 17 or later · <b>ready in around 2 minutes</b></span>
+      </div>
+
+      <figure class="stage" role="img" aria-label="Three bank texts become a line in your month and a monthly total by category">
+        <div class="texts" aria-hidden="true">
+          <p class="bubble b3"><span class="from">Your bank · 08:52</span>Purchase
+Card: **2210
+Amount: SAR 84.00
+At: AL OTHAIM</p>
+          <p class="bubble b2"><span class="from">Your bank · 09:15</span>Purchase
+Card: **2210
+Amount: SAR 38.00
+At: UBER</p>
+          <p class="bubble b1"><span class="from">Your bank · 12:41</span>Purchase
+Card: **2210
+Amount: SAR 64.00
+At: JAHEZ</p>
+        </div>
+        <div class="flow" aria-hidden="true"><svg viewBox="0 0 48 32" fill="none"><path d="M3 16h37" stroke="#5fb8a3" stroke-width="2" stroke-linecap="round" stroke-dasharray="2.5 4.5"/><path d="M34 7.5l9.5 8.5-9.5 8.5" stroke="#5fb8a3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="month" aria-hidden="true">
+          <div class="newrow">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v6.5a2 2 0 0 0 2 2 2 2 0 0 0 2-2V3M9 11.5V21M17 21V3c-2 1.3-3 4-3 7.5h3"/></svg></div>
+            <div class="who"><div class="name">Jahez</div><div class="meta"><i class="live"></i>••2210 · Food &amp; Dining · 12:41</div></div>
+            <div class="amt">64.00</div>
+          </div>
+          <div class="k">Spent this month · 8 Sep</div>
+          <div class="fig">2,286<small>SAR</small></div>
+          <div class="cats">
+            <div class="cat"><span class="n">Shopping</span><span class="bar"><i style="width:100%;background:#d6b45a"></i></span><span class="v">690</span></div>
+            <div class="cat"><span class="n">Food &amp; Dining</span><span class="bar"><i style="width:87%;background:#5fb8a3"></i></span><span class="v">598</span></div>
+            <div class="cat"><span class="n">Groceries</span><span class="bar"><i style="width:83%;background:#c98a68"></i></span><span class="v">571</span></div>
+            <div class="cat"><span class="n">Transportation</span><span class="bar"><i style="width:44%;background:#7b93c2"></i></span><span class="v">301</span></div>
+            <div class="cat"><span class="n">Other</span><span class="bar"><i style="width:18%;background:#6b7079"></i></span><span class="v">126</span></div>
+          </div>
+          <div class="pace"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg><span>On pace for <b>9,000</b> · 290 under your usual month</span></div>
+        </div>
+      </figure>
+      <p class="stage-note">Illustration · sample figures</p>
+
+      <ol class="steps">
+        <li><span class="num">01</span><h3>Set up once</h3><p>In Apple’s Shortcuts app.</p></li>
+        <li><span class="num">02</span><h3>Pay as usual</h3><p>Yuba reads your new bank texts on your phone, and asks you if one is unclear.</p></li>
+        <li><span class="num">03</span><h3>See your month</h3><p>Today, this month, and every transaction behind it.</p></li>
+      </ol>
+
+      <div class="promise">
+        <span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg></span>
+        <div><h2>Your spending stays on your phone.</h2><p>No bank login. No account. No ads. We don’t store your data.</p></div>
+      </div>
     </section>
-    <section class="hero" lang="ar" dir="rtl">
-      <h1>مالك يبقى على هاتفك.</h1>
-      <p class="lede">يوبا يحوّل رسائل البنك إلى سجل خاص لمصروفك — يُقرأ على هاتفك ويبقى على هاتفك. بلا حسابات، بلا خوادم، بلا تتبّع. صُنع في السعودية.</p>
+
+    <!-- ── Arabic ── -->
+    <section class="home" lang="ar" dir="rtl">
+      <h1><span class="l">أين تذهب فلوسك؟</span> <span class="l">الجواب في رسائل بنكك.</span></h1>
+      <i class="tick"></i>
+      <p class="lede">يوبا يقرأ رسائل البنك <strong>على جوالك</strong>، ويرتّب لك مصاريفك أولًا بأول.</p>
+      <div class="get">
+        <span class="soon"><i></i>قريبًا على App Store</span>
+        <span class="get-note">على iPhone · iOS 17 أو أحدث · <b>جاهز خلال دقيقتين تقريبًا</b></span>
+      </div>
+
+      <figure class="stage" role="img" aria-label="ثلاث رسائل من البنك تصبح عملية في شهرك ومجموعًا لمصاريف الشهر حسب الفئة">
+        <div class="texts" aria-hidden="true">
+          <p class="bubble b3"><span class="from">بنكك · <bdi dir="ltr">08:52</bdi></span>شراء
+بطاقة: <bdi dir="ltr">**2210</bdi>
+مبلغ: 84.00 ريال
+لدى: AL OTHAIM</p>
+          <p class="bubble b2"><span class="from">بنكك · <bdi dir="ltr">09:15</bdi></span>شراء
+بطاقة: <bdi dir="ltr">**2210</bdi>
+مبلغ: 38.00 ريال
+لدى: UBER</p>
+          <p class="bubble b1"><span class="from">بنكك · <bdi dir="ltr">12:41</bdi></span>شراء
+بطاقة: <bdi dir="ltr">**2210</bdi>
+مبلغ: 64.00 ريال
+لدى: JAHEZ</p>
+        </div>
+        <div class="flow" aria-hidden="true"><svg viewBox="0 0 48 32" fill="none"><path d="M3 16h37" stroke="#5fb8a3" stroke-width="2" stroke-linecap="round" stroke-dasharray="2.5 4.5"/><path d="M34 7.5l9.5 8.5-9.5 8.5" stroke="#5fb8a3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="month" aria-hidden="true">
+          <div class="newrow">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v6.5a2 2 0 0 0 2 2 2 2 0 0 0 2-2V3M9 11.5V21M17 21V3c-2 1.3-3 4-3 7.5h3"/></svg></div>
+            <div class="who"><div class="name">Jahez</div><div class="meta" dir="ltr"><i class="live"></i>••2210 · <bdi dir="rtl">الطعام والمطاعم</bdi> · 12:41</div></div>
+            <div class="amt">64.00</div>
+          </div>
+          <div class="k" dir="rtl" style="text-align:left">مصاريف هذا الشهر · 8 سبتمبر</div>
+          <div class="fig">2,286<small>ر.س</small></div>
+          <div class="cats">
+            <div class="cat"><span class="n">التسوق</span><span class="bar"><i style="width:100%;background:#d6b45a"></i></span><span class="v">690</span></div>
+            <div class="cat"><span class="n">الطعام والمطاعم</span><span class="bar"><i style="width:87%;background:#5fb8a3"></i></span><span class="v">598</span></div>
+            <div class="cat"><span class="n">البقالة</span><span class="bar"><i style="width:83%;background:#c98a68"></i></span><span class="v">571</span></div>
+            <div class="cat"><span class="n">المواصلات</span><span class="bar"><i style="width:44%;background:#7b93c2"></i></span><span class="v">301</span></div>
+            <div class="cat"><span class="n">أخرى</span><span class="bar"><i style="width:18%;background:#6b7079"></i></span><span class="v">126</span></div>
+          </div>
+          <div class="pace"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg><span dir="rtl">المتوقع لنهاية الشهر <b>9,000</b> · أقل من معتادك بـ290</span></div>
+        </div>
+      </figure>
+      <p class="stage-note">رسم توضيحي · أرقام افتراضية</p>
+
+      <ol class="steps">
+        <li><span class="num">01</span><h3>جهّزه مرة واحدة</h3><p>عبر تطبيق «الاختصارات» من Apple.</p></li>
+        <li><span class="num">02</span><h3>ادفع كعادتك</h3><p>يقرأ يوبا رسائل بنكك الجديدة على جوالك، ويسألك إن لم تتضح إحداها.</p></li>
+        <li><span class="num">03</span><h3>تابع شهرك</h3><p>اليوم، والشهر، وكل عملية بتفاصيلها.</p></li>
+      </ol>
+
+      <div class="promise">
+        <span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg></span>
+        <div><h2>بياناتك المالية تبقى على جوالك.</h2><p>بلا ربط بحسابك البنكي، بلا تسجيل، بلا إعلانات. ولا نخزّن بياناتك.</p></div>
+      </div>
     </section>
 
     <nav class="doors">
