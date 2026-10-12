@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-title-ar="شروط الاستخدام · يوبا">
+<html lang="en" data-en-path="/terms/" data-ar-path="/ar/terms/" data-title-ar="شروط الاستخدام · يوبا">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -7,19 +7,26 @@
 <title>Terms of Use · Yuba</title>
 <script>
 /* Language before the first paint (an Arabic visitor never sees English first), the Latin half of
-   the Arabic face fetched early, html.js for the enhanced layout, html.scrolled for the header. The rest is /site.js. */
+   the Arabic face fetched early, html.js for the enhanced layout, html.scrolled for the header. The rest is /site.js.
+   Every page has two addresses, data-en-path ("/privacy/") and data-ar-path ("/ar/privacy/"); both files hold both
+   languages, so the address simply follows the language shown — no reload. An /ar/ address always opens in Arabic. */
 (function (d) {
+  var en = d.getAttribute('data-en-path'), ar = d.getAttribute('data-ar-path');
+  var onAr = /^\/ar(\/|$)/.test(location.pathname);
   var s = null, q = null;
   try { s = localStorage.getItem('yuba-lang'); } catch (e) {}
   try { q = new URLSearchParams(location.search).get('lang'); } catch (e) {}
-  if (q === 'ar' || q === 'en') {
-    s = q;
-    try { localStorage.setItem('yuba-lang', q); } catch (e) {}
-    try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {}
-  } else if (s !== 'ar' && s !== 'en') {
+  if (q !== 'ar' && q !== 'en') q = null;
+  if (q) s = q;
+  else if (onAr) s = 'ar';
+  else if (s !== 'ar' && s !== 'en') {
     // no choice saved yet: a phone set to Arabic opens the Arabic page
     try { if (/^ar(-|$)/i.test((navigator.languages && navigator.languages[0]) || navigator.language || '')) s = 'ar'; } catch (e) {}
   }
+  if (q || onAr) { try { localStorage.setItem('yuba-lang', s); } catch (e) {} }
+  var want = s === 'ar' ? ar : en;
+  if (want && want !== location.pathname) { try { history.replaceState(null, '', want + location.hash); } catch (e) {} }
+  else if (q) { try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} }
   d.className = 'js';
   if (s === 'ar') {
     d.setAttribute('data-lang', 'ar'); d.lang = 'ar';
@@ -27,13 +34,16 @@
     l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
     l.href = '/fonts/noto-kufi-arabic-latin.woff2';
     document.head.appendChild(l);
-  }
+  } else { d.removeAttribute('data-lang'); d.lang = 'en'; }
   var on = false, f = function () { var y = (window.scrollY || 0) > 8; if (y !== on) { on = y; d.classList.toggle('scrolled', y); } };
   f(); addEventListener('scroll', f, { passive: true });
 })(document.documentElement);
 </script>
 <meta name="description" content="Yuba’s terms of use: the 60 free days, the membership (SAR 29.99 a month or SAR 179.99 a year), cancelling and refunds.">
 <link rel="canonical" href="https://yuba-app.com/terms/">
+<link rel="alternate" hreflang="en" href="https://yuba-app.com/terms/">
+<link rel="alternate" hreflang="ar" href="https://yuba-app.com/ar/terms/">
+<link rel="alternate" hreflang="x-default" href="https://yuba-app.com/terms/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ar_SA">
@@ -165,7 +175,7 @@
     <p class="date">سارية اعتبارًا من 11 أكتوبر 2026</p>
     <p>يوبا (Yuba) تطبيق iOS من تطوير عمرو ميري؛ وتجاريًا يعمل يوبا من الإمارات العربية المتحدة. التطبيق نفسه مرخّص لك بموجب <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">اتفاقية Apple القياسية لترخيص التطبيق للمستخدم النهائي</a>، وهذه الشروط مكمّلة لتلك الاتفاقية: الترخيص يأتي من Apple، وقواعد العضوية تأتي من هذه الصفحة.</p>
     <h2 id="what-yuba-is-ar">ما هو يوبا</h2>
-    <p>يقرأ يوبا رسائل بنكك النصية على هاتفك، ويحتفظ فيه بسجلّ خاص لمصروفاتك. أنت تسلّمه الرسائل عبر اختصار iOS، وهو يحلّلها بقواعد ثابتة، على الجهاز نفسه. بلا حساب، وبلا خادم.</p>
+    <p>يقرأ يوبا رسائل بنكك النصية على جوالك، ويحتفظ فيه بسجلّ خاص لمصروفاتك. أنت تسلّمه الرسائل عبر اختصار iOS، وهو يحلّلها بقواعد ثابتة، على الجهاز نفسه. بلا حساب، وبلا خادم.</p>
     <p>يوبا أداة لحفظ السجلات: يعرض لك ما تقوله رسائل بنكك. هو ليس بنكًا، ولا يحتفظ بأي أموال، ولا يقدّم نصائح مالية. ولا شيء في التطبيق يُعدّ توصية بأن تنفق أو تدّخر أو تستثمر.</p>
     <h2 id="your-numbers-ar">أرقامك</h2>
     <p>كل رقم في يوبا مصدره رسائل بنكك أنت، تحلّلها القواعد. القواعد موضوعة بعناية، لكن رسائل البنوك تتفاوت، وقد تفوت رسالة أو تُقرأ خطأ. في كل ما له شأن — رصيد، أو دفعة، أو نزاع — راجع الرقم عند بنكك. سجلات بنكك هي السجلات الرسمية.</p>
@@ -192,16 +202,16 @@
     <h2 id="refunds-ar">الاسترداد</h2>
     <p>الاسترداد تتولاه Apple، عبر <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>. إذا أعادت Apple مبلغ عملية شراء، فالأشهر التي فتحتها تلك العملية تحديدًا تُغلق من جديد. ولا يتغير شيء سواها.</p>
     <h2 id="using-yuba-ar">استخدام يوبا</h2>
-    <p>يوبا لرسائل بنكك أنت، على هاتفك أنت. لا تُدخل فيه رسائل ليست لك، ولا تستخدمه في التعامل مع بيانات مالية تخص غيرك. ولا تنسخ التطبيق، ولا تُعد بيعه، ولا تعبث به — وترخيص Apple يغطي ما تبقى.</p>
+    <p>يوبا لرسائل بنكك أنت، على جوالك أنت. لا تُدخل فيه رسائل ليست لك، ولا تستخدمه في التعامل مع بيانات مالية تخص غيرك. ولا تنسخ التطبيق، ولا تُعد بيعه، ولا تعبث به — وترخيص Apple يغطي ما تبقى.</p>
     <h2 id="responsibility-ar">المسؤولية</h2>
     <p>يُقدَّم يوبا كما هو. نحرص على دقة قواعد التحليل ونواصل صيانة التطبيق، لكن ما من برنامج كامل: قد تُقرأ رسالة خطأ، وقد يقع خلل. ولسنا مسؤولين عن قرارات تُبنى على أرقام يوبا — والقسم أعلاه يقولها بوضوح: تحقق عند بنكك.</p>
-    <p>بياناتك تعيش على هاتفك وحده وفي نسختك الاحتياطية الخاصة بجهاز iPhone. نحن لا نحتفظ بأي نسخة، ولذلك لا نستطيع استرجاع ما يضيع بضياع الهاتف أو مسحه. وحيثما يجيز النظام تحديد المسؤولية، فإن مجموع مسؤوليتنا عن أي مطالبة تتصل بالتطبيق هو المبلغ الذي دفعته للعضوية خلال الاثني عشر شهرًا السابقة للمطالبة.</p>
+    <p>بياناتك تعيش على جوالك وحده وفي نسختك الاحتياطية الخاصة بجهاز iPhone. نحن لا نحتفظ بأي نسخة، ولذلك لا نستطيع استرجاع ما يضيع بضياع الجوال أو مسحه. وحيثما يجيز النظام تحديد المسؤولية، فإن مجموع مسؤوليتنا عن أي مطالبة تتصل بالتطبيق هو المبلغ الذي دفعته للعضوية خلال الاثني عشر شهرًا السابقة للمطالبة.</p>
     <h2 id="governing-law-ar">القانون الواجب التطبيق</h2>
     <p>تخضع هذه الشروط لقوانين دولة الإمارات العربية المتحدة. وتبقى لك حقوق المستهلك وحقوق البيانات التي يمنحها لك نظام بلدك — فلا شيء هنا ينتقص منها. ولاتفاقية ترخيص Apple شروطها الخاصة فيما يخص الترخيص نفسه.</p>
     <h2 id="changes-to-these-terms-ar">التعديلات على هذه الشروط</h2>
     <p>عندما تتغير هذه الشروط، تتغير هذه الصفحة ويتغيّر التاريخ في أعلاها. والنسخة المعروضة في هذه الصفحة هي النسخة السارية.</p>
     <h2 id="privacy-ar">الخصوصية</h2>
-    <p>طريقة تعامل يوبا مع بياناتك — أي طريقة إبقائها على هاتفك — مشروحة في <a href="/privacy/">صفحة الخصوصية</a>.</p>
+    <p>طريقة تعامل يوبا مع بياناتك — أي طريقة إبقائها على جوالك — مشروحة في <a href="/privacy/">صفحة الخصوصية</a>.</p>
     <h2 id="contact-ar">التواصل</h2>
     <p>عمرو ميري، مطوّر يوبا<br><a href="mailto:support@yuba-app.com">support@yuba-app.com</a></p>
       </div>

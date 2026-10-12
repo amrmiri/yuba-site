@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ar" data-lang="ar" data-en-path="/terms/" data-ar-path="/ar/terms/" data-title-ar="شروط الاستخدام · يوبا" data-title-en="Terms of Use · Yuba">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>شروط الاستخدام · يوبا</title>
+<script>
+/* Language before the first paint (an Arabic visitor never sees English first), the Latin half of
+   the Arabic face fetched early, html.js for the enhanced layout, html.scrolled for the header. The rest is /site.js.
+   Every page has two addresses, data-en-path ("/privacy/") and data-ar-path ("/ar/privacy/"); both files hold both
+   languages, so the address simply follows the language shown — no reload. An /ar/ address always opens in Arabic. */
+(function (d) {
+  var en = d.getAttribute('data-en-path'), ar = d.getAttribute('data-ar-path');
+  var onAr = /^\/ar(\/|$)/.test(location.pathname);
+  var s = null, q = null;
+  try { s = localStorage.getItem('yuba-lang'); } catch (e) {}
+  try { q = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+  if (q !== 'ar' && q !== 'en') q = null;
+  if (q) s = q;
+  else if (onAr) s = 'ar';
+  else if (s !== 'ar' && s !== 'en') {
+    // no choice saved yet: a phone set to Arabic opens the Arabic page
+    try { if (/^ar(-|$)/i.test((navigator.languages && navigator.languages[0]) || navigator.language || '')) s = 'ar'; } catch (e) {}
+  }
+  if (q || onAr) { try { localStorage.setItem('yuba-lang', s); } catch (e) {} }
+  var want = s === 'ar' ? ar : en;
+  if (want && want !== location.pathname) { try { history.replaceState(null, '', want + location.hash); } catch (e) {} }
+  else if (q) { try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} }
+  d.className = 'js';
+  if (s === 'ar') {
+    d.setAttribute('data-lang', 'ar'); d.lang = 'ar';
+    var l = document.createElement('link');
+    l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
+    l.href = '/fonts/noto-kufi-arabic-latin.woff2';
+    document.head.appendChild(l);
+  } else { d.removeAttribute('data-lang'); d.lang = 'en'; }
+  var on = false, f = function () { var y = (window.scrollY || 0) > 8; if (y !== on) { on = y; d.classList.toggle('scrolled', y); } };
+  f(); addEventListener('scroll', f, { passive: true });
+})(document.documentElement);
+</script>
+<meta name="description" content="شروط استخدام يوبا: الأيام الستون المجانية، والعضوية (29.99 ر.س شهريًا أو 179.99 ر.س سنويًا)، والإلغاء والاسترداد.">
+<link rel="canonical" href="https://yuba-app.com/ar/terms/">
+<link rel="alternate" hreflang="en" href="https://yuba-app.com/terms/">
+<link rel="alternate" hreflang="ar" href="https://yuba-app.com/ar/terms/">
+<link rel="alternate" hreflang="x-default" href="https://yuba-app.com/terms/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:site_name" content="Yuba · يوبا">
+<meta property="og:url" content="https://yuba-app.com/ar/terms/">
+<meta property="og:title" content="شروط الاستخدام · يوبا">
+<meta property="og:description" content="شروط استخدام يوبا: الأيام الستون المجانية، والعضوية (29.99 ر.س شهريًا أو 179.99 ر.س سنويًا)، والإلغاء والاسترداد.">
+<meta property="og:image" content="https://yuba-app.com/og/yuba-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Yuba — your bank texts you all month, Yuba adds it up. أين تذهب فلوسك؟ الجواب في رسائل بنكك.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#0b0c0f">
+<link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/site.css">
+<script src="/site.js" async></script>
+<noscript><style>body [lang="ar"]{display:revert !important}.langbtn{display:none}</style></noscript>
+</head>
+<body class="p-doc">
+<a class="skip" href="#main"><span lang="en">Skip to content</span><span lang="ar">انتقل إلى المحتوى</span></a>
+<header class="site">
+  <div class="head-in">
+    <a class="lockup" href="/ar/" aria-label="Yuba · يوبا, home" data-aria-en="Yuba · يوبا, home" data-aria-ar="يوبا · Yuba، الصفحة الرئيسية">
+      <span class="latin">YUBA</span><span class="dot"></span><span class="arabic">يوبا</span>
+    </a>
+    <button class="langbtn" type="button">
+      <span lang="ar">العربية</span><span lang="en">English</span>
+    </button>
+    <button class="menubtn" type="button" aria-expanded="false" aria-controls="toc-en" data-controls-en="toc-en" data-controls-ar="toc-ar" aria-label="On this page" data-aria-en="On this page" data-aria-ar="في هذه الصفحة"><i></i><i></i></button>
+  </div>
+</header>
+<div class="page wide doc">
+
+  <main id="main">
+    <article lang="en">
+    <div class="doc-grid">
+      <nav class="toc" id="toc-en" aria-label="On this page">
+        <p class="toc-title">On this page</p>
+        <ol>
+        <li><a href="#what-yuba-is">What Yuba is</a></li>
+        <li><a href="#your-numbers">Your numbers</a></li>
+        <li><a href="#the-membership">The membership</a></li>
+        <li><a href="#months-you-own">Months you own</a></li>
+        <li><a href="#a-lapsed-membership">A lapsed membership</a></li>
+        <li><a href="#cancelling">Cancelling</a></li>
+        <li><a href="#refunds">Refunds</a></li>
+        <li><a href="#using-yuba">Using Yuba</a></li>
+        <li><a href="#responsibility">Responsibility</a></li>
+        <li><a href="#governing-law">Governing law</a></li>
+        <li><a href="#changes-to-these-terms">Changes to these terms</a></li>
+        <li><a href="#privacy">Privacy</a></li>
+        <li><a href="#contact">Contact</a></li>
+        </ol>
+        <a class="toc-home" href="/ar/">Yuba home</a>
+      </nav>
+      <div class="doc-body">
+    <h1>Terms of Use</h1>
+    <p class="date">Effective 11 October 2026</p>
+    <p>Yuba (يوبا) is an iOS app made by Amr Miri; commercially, Yuba operates from the United Arab Emirates. The app itself is licensed to you under <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple's standard Licensed Application End User License Agreement</a>. These terms supplement that agreement. The license comes from Apple; the membership rules come from this page.</p>
+    <h2 id="what-yuba-is">What Yuba is</h2>
+    <p>Yuba reads your bank SMS messages on your phone and keeps a private spending ledger there. You hand it messages through an iOS Shortcut; it parses them with fixed rules, on the device. No account, no server.</p>
+    <p>Yuba is a record-keeping tool. It shows you what your bank messages say. It is not a bank, it holds no money, and it does not give financial advice. Nothing in the app is a recommendation to spend, save, or invest.</p>
+    <h2 id="your-numbers">Your numbers</h2>
+    <p>Every figure in Yuba comes from your own bank messages, parsed by rules. Rules are careful, but bank messages vary, and a message can be missed or read wrong. For anything that matters — a balance, a payment, a dispute — check the figure against your bank. Your bank's records are the official ones.</p>
+    <h2 id="the-membership">The membership</h2>
+    <p>Yuba has one membership: an auto-renewing subscription, sold and billed by Apple, with two plans. The membership does one thing: while it runs, every new month opens and is yours to keep.</p>
+    <table>
+      <tr><th>Plan</th><th>Price</th><th>Renews</th></tr>
+      <tr><td>Yuba membership, monthly</td><td>SAR 29.99 per month</td><td>Every month, until you cancel</td></tr>
+      <tr><td>Yuba membership, yearly</td><td>SAR 179.99 per year (about SAR 15.00 a month)</td><td>Every year, until you cancel</td></tr>
+    </table>
+    <p>Prices in the app come from Apple, and the price on Apple's payment sheet when you subscribe is the price you pay. Apple bills your Apple Account, and each plan renews on its own until you cancel. Payment runs entirely between you and Apple — we have no server, keep no customer records, and never receive your payment details or identity from a purchase. Apple holds the purchase data. Family Sharing is off.</p>
+    <p><strong>Yuba is free for 60 days, counted from the first bank text it reads.</strong> Nothing is asked during those days, and all of Yuba is open. The free days never pause. They start again only if everything is deleted — in Settings → Your data, or by deleting the app — and then every record on the phone goes with them. Settings › Membership shows the date they end from the first day, and Home shows it in the last week. From day 61, totals, averages and charts need a membership, except for the months that ended inside your free days.</p>
+    <p>The yearly plan includes one month free the first time you subscribe. Apple charges only when that free month ends, and cancelling before then costs nothing. The app offers it in the last week of your free days.</p>
+    <p><strong>If a renewal payment fails.</strong> When a card expires or a charge is declined at renewal, Apple keeps the membership open for up to 16 days while it retries the payment and asks you to update your payment method. If a retry succeeds inside that window, nothing is interrupted; if none does, the membership lapses at the end of it. If Apple keeps retrying after those 16 days, the totals wait like any lapse while every month you own stays open, and they reopen when the payment goes through.</p>
+    <p><strong>Without a connection.</strong> Yuba keeps Apple's last confirmed answer on the phone. If the App Store cannot be reached, that answer stands until the paid period ends, plus 16 days; after that, the totals wait until Yuba can check with Apple again. Nothing else stops.</p>
+    <h2 id="months-you-own">Months you own</h2>
+    <p>Months that finished during your 60 free days are yours. After that, a month is yours if your membership covered any day of it. A month you own stays viewable forever. Cancelling never removes anything already open.</p>
+    <p>Export never sits behind the membership. Your data is yours to take out at any time.</p>
+    <h2 id="a-lapsed-membership">A lapsed membership</h2>
+    <p>Capture keeps working. Every month you already own stays open. Export keeps working. What stops is the totals of the months your membership did not cover — and any range or chart that includes them.</p>
+    <p>If you come back on the monthly plan, the current month opens and life continues from there; months missed while lapsed stay closed. If you come back on the yearly plan, every missed month opens.</p>
+    <h2 id="cancelling">Cancelling</h2>
+    <p>Cancel any time in your Apple Account settings: on your iPhone, Settings → your name → Subscriptions, or at <a href="https://apps.apple.com/account/subscriptions">apps.apple.com/account/subscriptions</a>. Cancelling stops the next renewal, and nothing already open is touched. To avoid the next charge, cancel at least 24 hours before the period ends.</p>
+    <h2 id="refunds">Refunds</h2>
+    <p>Refunds are handled by Apple, at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>. If Apple refunds a purchase, the months that exact purchase opened close again. Nothing else changes.</p>
+    <h2 id="using-yuba">Using Yuba</h2>
+    <p>Yuba is for your own bank messages, on your own phone. Don't feed it messages that aren't yours, and don't use it to handle someone else's financial data. Don't copy, resell, or tamper with the app — Apple's license covers the rest.</p>
+    <h2 id="responsibility">Responsibility</h2>
+    <p>Yuba is provided as is. We keep the parsing rules careful and the app maintained, but no software is perfect: a message can be misread, a bug can happen. We are not responsible for decisions made on Yuba's figures — the section above says it plainly: verify with your bank.</p>
+    <p>Your data lives only on your phone and in your own iPhone backup. We hold no copy, so we cannot restore what a lost or erased phone loses. Where the law allows liability to be limited, our total liability for any claim connected to the app is the amount you paid for the membership in the twelve months before the claim.</p>
+    <h2 id="governing-law">Governing law</h2>
+    <p>These terms are governed by the laws of the United Arab Emirates. Where you live grants you consumer and data rights of its own — nothing here reduces them. Apple's license agreement carries its own terms for the license itself.</p>
+    <h2 id="changes-to-these-terms">Changes to these terms</h2>
+    <p>When these terms change, this page changes and the date at the top moves. The version on this page is the one in force.</p>
+    <h2 id="privacy">Privacy</h2>
+    <p>How Yuba handles your data — which is to say, how it keeps it on your phone — is on the <a href="/ar/privacy/">privacy page</a>.</p>
+    <h2 id="contact">Contact</h2>
+    <p>Amr Miri, developer of Yuba<br><a href="mailto:support@yuba-app.com">support@yuba-app.com</a></p>
+      </div>
+    </div>
+    </article>
+    <article lang="ar" dir="rtl">
+    <div class="doc-grid">
+      <nav class="toc" id="toc-ar" aria-label="في هذه الصفحة">
+        <p class="toc-title">في هذه الصفحة</p>
+        <ol>
+        <li><a href="#what-yuba-is-ar">ما هو يوبا</a></li>
+        <li><a href="#your-numbers-ar">أرقامك</a></li>
+        <li><a href="#the-membership-ar">العضوية</a></li>
+        <li><a href="#months-you-own-ar">الأشهر التي تملكها</a></li>
+        <li><a href="#a-lapsed-membership-ar">انقطاع العضوية</a></li>
+        <li><a href="#cancelling-ar">الإلغاء</a></li>
+        <li><a href="#refunds-ar">الاسترداد</a></li>
+        <li><a href="#using-yuba-ar">استخدام يوبا</a></li>
+        <li><a href="#responsibility-ar">المسؤولية</a></li>
+        <li><a href="#governing-law-ar">القانون الواجب التطبيق</a></li>
+        <li><a href="#changes-to-these-terms-ar">التعديلات على هذه الشروط</a></li>
+        <li><a href="#privacy-ar">الخصوصية</a></li>
+        <li><a href="#contact-ar">التواصل</a></li>
+        </ol>
+        <a class="toc-home" href="/ar/">الصفحة الرئيسية</a>
+      </nav>
+      <div class="doc-body">
+    <h1>شروط الاستخدام</h1>
+    <p class="date">سارية اعتبارًا من 11 أكتوبر 2026</p>
+    <p>يوبا (Yuba) تطبيق iOS من تطوير عمرو ميري؛ وتجاريًا يعمل يوبا من الإمارات العربية المتحدة. التطبيق نفسه مرخّص لك بموجب <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">اتفاقية Apple القياسية لترخيص التطبيق للمستخدم النهائي</a>، وهذه الشروط مكمّلة لتلك الاتفاقية: الترخيص يأتي من Apple، وقواعد العضوية تأتي من هذه الصفحة.</p>
+    <h2 id="what-yuba-is-ar">ما هو يوبا</h2>
+    <p>يقرأ يوبا رسائل بنكك النصية على جوالك، ويحتفظ فيه بسجلّ خاص لمصروفاتك. أنت تسلّمه الرسائل عبر اختصار iOS، وهو يحلّلها بقواعد ثابتة، على الجهاز نفسه. بلا حساب، وبلا خادم.</p>
+    <p>يوبا أداة لحفظ السجلات: يعرض لك ما تقوله رسائل بنكك. هو ليس بنكًا، ولا يحتفظ بأي أموال، ولا يقدّم نصائح مالية. ولا شيء في التطبيق يُعدّ توصية بأن تنفق أو تدّخر أو تستثمر.</p>
+    <h2 id="your-numbers-ar">أرقامك</h2>
+    <p>كل رقم في يوبا مصدره رسائل بنكك أنت، تحلّلها القواعد. القواعد موضوعة بعناية، لكن رسائل البنوك تتفاوت، وقد تفوت رسالة أو تُقرأ خطأ. في كل ما له شأن — رصيد، أو دفعة، أو نزاع — راجع الرقم عند بنكك. سجلات بنكك هي السجلات الرسمية.</p>
+    <h2 id="the-membership-ar">العضوية</h2>
+    <p>في يوبا عضوية واحدة: اشتراك يتجدد تلقائيًا، تبيعه Apple وتتولى فوترته، وله خطتان. والعضوية تفعل شيئًا واحدًا: ما دامت سارية، يُفتح كل شهر جديد ويبقى لك.</p>
+    <table>
+      <tr><th>الخطة</th><th>السعر</th><th>التجديد</th></tr>
+      <tr><td>عضوية يوبا، شهرية</td><td>29.99 ر.س في الشهر</td><td>كل شهر، حتى تلغيها</td></tr>
+      <tr><td>عضوية يوبا، سنوية</td><td>179.99 ر.س في السنة (أي نحو 15.00 ر.س في الشهر)</td><td>كل سنة، حتى تلغيها</td></tr>
+    </table>
+    <p>الأسعار داخل التطبيق تأتي من Apple، والسعر الظاهر على واجهة الدفع لدى Apple عند اشتراكك هو السعر الذي تدفعه. تُحصّل Apple المبلغ من حساب Apple الخاص بك، وتتجدد كل خطة من تلقاء نفسها حتى تلغيها. والدفع يجري بكامله بينك وبين Apple — فليس لدينا خادم، ولا نحتفظ بسجلات عملاء، ولا يصلنا من أي عملية شراء شيء من بيانات الدفع أو الهوية. بيانات الشراء تبقى عند Apple. والمشاركة العائلية غير مفعّلة.</p>
+    <p><strong>يوبا مجاني لمدة 60 يومًا، تُحسب من أول رسالة بنكية يقرؤها.</strong> لا يُطلب منك شيء خلال هذه الأيام، ويبقى يوبا مفتوحًا بالكامل. والأيام المجانية لا تتوقف مؤقتًا. ولا تبدأ من جديد إلا إذا حُذف كل شيء — من «الإعدادات ← بياناتك» أو بحذف التطبيق — وعندها يذهب معها كل سجلّ على الجوال. وتعرض «الإعدادات ← العضوية» تاريخ انتهائها منذ اليوم الأول، وتعرضه الشاشة الرئيسية في الأسبوع الأخير. وابتداءً من اليوم الحادي والستين تحتاج المجاميع والمتوسطات والرسوم البيانية إلى عضوية، إلا للأشهر التي اكتملت خلال أيامك المجانية.</p>
+    <p>تشمل الخطة السنوية شهرًا مجانيًا في أول مرة تشترك فيها. ولا تُحصّل Apple أي مبلغ إلا عند انتهاء ذلك الشهر المجاني، وإن ألغيت قبل ذلك فلا تدفع شيئًا. ويعرضها عليك التطبيق في الأسبوع الأخير من أيامك المجانية.</p>
+    <p><strong>إذا تعذّر تحصيل التجديد.</strong> حين تنتهي صلاحية البطاقة أو يُرفض التحصيل عند التجديد، تُبقي Apple العضوية مفتوحة حتى 16 يومًا وهي تعيد محاولة التحصيل وتطلب منك تحديث وسيلة الدفع. فإن نجحت محاولة خلال هذه المدة لم ينقطع شيء؛ وإن لم تنجح أي محاولة، تنتهي العضوية بانتهائها. وإن واصلت Apple المحاولة بعد هذه الأيام الستة عشر، تنتظر المجاميع كما في أي انقطاع وتبقى كل الأشهر التي تملكها مفتوحة، ثم تعود حين ينجح الدفع.</p>
+    <p><strong>من غير اتصال.</strong> يحتفظ يوبا على الجوال بآخر إجابة مؤكَّدة من Apple. فإن تعذّر الوصول إلى App Store، تبقى تلك الإجابة قائمة حتى نهاية المدة المدفوعة وستة عشر يومًا بعدها؛ وبعد ذلك تنتظر المجاميع حتى يتمكن يوبا من التحقق لدى Apple من جديد. ولا يتوقف شيء آخر.</p>
+    <h2 id="months-you-own-ar">الأشهر التي تملكها</h2>
+    <p>الأشهر التي اكتملت خلال أيامك المجانية الستين ملكك. وبعد ذلك، يصبح الشهر ملكك إذا غطّت عضويتك أي يوم منه. والشهر الذي تملكه يبقى متاحًا للعرض على الدوام. والإلغاء لا يزيل شيئًا سبق أن فُتح.</p>
+    <p>التصدير ليس محجوزًا خلف العضوية أبدًا. بياناتك لك، تُخرجها متى شئت.</p>
+    <h2 id="a-lapsed-membership-ar">انقطاع العضوية</h2>
+    <p>يستمر الالتقاط في العمل. وكل شهر تملكه يبقى مفتوحًا. ويستمر التصدير في العمل. والذي يتوقف هو مجاميع الأشهر التي لم تغطّها عضويتك — وأي نطاق أو رسم بياني يشملها.</p>
+    <p>إذا عدت على الخطة الشهرية، يُفتح الشهر الحالي ويستمر كل شيء من هناك؛ والأشهر التي فاتت أثناء الانقطاع تبقى مغلقة. وإذا عدت على الخطة السنوية، يُفتح كل شهر فاتك.</p>
+    <h2 id="cancelling-ar">الإلغاء</h2>
+    <p>يمكنك الإلغاء في أي وقت من إعدادات حساب Apple: على جهاز iPhone، الإعدادات ← اسمك ← الاشتراكات، أو عبر <a href="https://apps.apple.com/account/subscriptions">apps.apple.com/account/subscriptions</a>. الإلغاء يوقف التجديد التالي، ولا يمسّ شيئًا سبق أن فُتح. ولتجنّب الخصم التالي، ألغِ قبل نهاية المدة بـ24 ساعة على الأقل.</p>
+    <h2 id="refunds-ar">الاسترداد</h2>
+    <p>الاسترداد تتولاه Apple، عبر <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>. إذا أعادت Apple مبلغ عملية شراء، فالأشهر التي فتحتها تلك العملية تحديدًا تُغلق من جديد. ولا يتغير شيء سواها.</p>
+    <h2 id="using-yuba-ar">استخدام يوبا</h2>
+    <p>يوبا لرسائل بنكك أنت، على جوالك أنت. لا تُدخل فيه رسائل ليست لك، ولا تستخدمه في التعامل مع بيانات مالية تخص غيرك. ولا تنسخ التطبيق، ولا تُعد بيعه، ولا تعبث به — وترخيص Apple يغطي ما تبقى.</p>
+    <h2 id="responsibility-ar">المسؤولية</h2>
+    <p>يُقدَّم يوبا كما هو. نحرص على دقة قواعد التحليل ونواصل صيانة التطبيق، لكن ما من برنامج كامل: قد تُقرأ رسالة خطأ، وقد يقع خلل. ولسنا مسؤولين عن قرارات تُبنى على أرقام يوبا — والقسم أعلاه يقولها بوضوح: تحقق عند بنكك.</p>
+    <p>بياناتك تعيش على جوالك وحده وفي نسختك الاحتياطية الخاصة بجهاز iPhone. نحن لا نحتفظ بأي نسخة، ولذلك لا نستطيع استرجاع ما يضيع بضياع الجوال أو مسحه. وحيثما يجيز النظام تحديد المسؤولية، فإن مجموع مسؤوليتنا عن أي مطالبة تتصل بالتطبيق هو المبلغ الذي دفعته للعضوية خلال الاثني عشر شهرًا السابقة للمطالبة.</p>
+    <h2 id="governing-law-ar">القانون الواجب التطبيق</h2>
+    <p>تخضع هذه الشروط لقوانين دولة الإمارات العربية المتحدة. وتبقى لك حقوق المستهلك وحقوق البيانات التي يمنحها لك نظام بلدك — فلا شيء هنا ينتقص منها. ولاتفاقية ترخيص Apple شروطها الخاصة فيما يخص الترخيص نفسه.</p>
+    <h2 id="changes-to-these-terms-ar">التعديلات على هذه الشروط</h2>
+    <p>عندما تتغير هذه الشروط، تتغير هذه الصفحة ويتغيّر التاريخ في أعلاها. والنسخة المعروضة في هذه الصفحة هي النسخة السارية.</p>
+    <h2 id="privacy-ar">الخصوصية</h2>
+    <p>طريقة تعامل يوبا مع بياناتك — أي طريقة إبقائها على جوالك — مشروحة في <a href="/ar/privacy/">صفحة الخصوصية</a>.</p>
+    <h2 id="contact-ar">التواصل</h2>
+    <p>عمرو ميري، مطوّر يوبا<br><a href="mailto:support@yuba-app.com">support@yuba-app.com</a></p>
+      </div>
+    </div>
+    </article>
+  </main>
+
+  <footer class="site">
+    <a class="lockup small" href="/ar/"><span class="latin">YUBA</span><span class="dot"></span><span class="arabic">يوبا</span></a>
+    <span><span lang="en">Built in Saudi Arabia</span><span lang="ar">صُنع في السعودية</span></span>
+    <span class="quiet"><span lang="en">No cookies, no trackers.</span><span lang="ar">لا كوكيز ولا تتبّع.</span></span>
+    <span class="spacer"></span>
+    <a href="/ar/privacy/"><span lang="en">Privacy</span><span lang="ar">الخصوصية</span></a>
+    <a href="/ar/terms/"><span lang="en">Terms</span><span lang="ar">الشروط</span></a>
+    <a href="/ar/support/"><span lang="en">Support</span><span lang="ar">الدعم</span></a>
+    <a href="mailto:support@yuba-app.com">support@yuba-app.com</a>
+  </footer>
+
+</div>
+</body>
+</html>

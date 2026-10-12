@@ -93,7 +93,7 @@ ${body}
 const titled = (t, brand) => (/Yuba|يوبا/.test(t) ? t : `${t} · ${brand}`);
 
 const template = (key, page) => `<!doctype html>
-<html lang="en" data-title-ar="${esc(titled(page.ar.title, 'يوبا'))}">
+<html lang="en" data-en-path="/${key}/" data-ar-path="/ar/${key}/" data-title-ar="${esc(titled(page.ar.title, 'يوبا'))}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -104,6 +104,9 @@ ${HEAD_JS}
 </script>
 <meta name="description" content="${esc(page.desc)}">
 <link rel="canonical" href="https://yuba-app.com/${key}/">
+<link rel="alternate" hreflang="en" href="https://yuba-app.com/${key}/">
+<link rel="alternate" hreflang="ar" href="https://yuba-app.com/ar/${key}/">
+<link rel="alternate" hreflang="x-default" href="https://yuba-app.com/${key}/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ar_SA">
@@ -184,3 +187,6 @@ for (const key of ['privacy', 'terms', 'support']) {
   fs.writeFileSync(file, template(key, page));
   console.log('wrote', path.relative(ROOT, file));
 }
+
+// The Arabic addresses (/ar/…) and the sitemap, from the English files just written and the hand-written home.
+require('./build-ar.js');

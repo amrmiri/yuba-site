@@ -20,7 +20,7 @@
   var t = function (k) { return L[ar() ? 'ar' : 'en'][k]; };
 
   /* ── language ─────────────────────────────────────────────── */
-  var titleEn = d.title, titleAr = html.getAttribute('data-title-ar');
+  var titleEn = html.getAttribute('data-title-en') || d.title, titleAr = html.getAttribute('data-title-ar');
   function labels() {
     var a = ar();
     if (titleAr) d.title = a ? titleAr : titleEn;
@@ -53,6 +53,9 @@
     if (toAr) html.setAttribute('data-lang', 'ar'); else html.removeAttribute('data-lang');
     html.lang = toAr ? 'ar' : 'en';
     try { localStorage.setItem('yuba-lang', toAr ? 'ar' : 'en'); } catch (e) {}
+    // the address follows: /privacy/ ⇄ /ar/privacy/
+    var to = html.getAttribute(toAr ? 'data-ar-path' : 'data-en-path');
+    if (to) try { history.replaceState(null, '', to + location.hash); } catch (e) {}
     labels();
     var y = 0;
     if (at && at.r > 1) y = html.scrollHeight - fromEnd;               // below the last block: keep the distance from the end
@@ -224,8 +227,17 @@
     if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     if (a.classList.contains('shot')) { if (lbOpen(a)) e.preventDefault(); return; }
     var href = a.getAttribute('href'), hash = null;
-    if (href.charAt(0) === '#') hash = href.slice(1);
-    else if (href.indexOf('/#') === 0 && location.pathname === '/') hash = href.slice(2);
+    // A link to one of the four pages, in either language: a jump if it is this page, otherwise
+    // the page in the language you are reading (/terms/ or /ar/terms/).
+    var pg = /^\/(?:ar\/)?((?:privacy|terms|support)\/)?(#.*)?$/.exec(href);
+    if (pg) {
+      var page = '/' + (pg[1] || '');
+      if (page === html.getAttribute('data-en-path') && pg[2]) hash = pg[2].slice(1);
+      else {
+        var dest = (ar() ? '/ar' : '') + page + (pg[2] || '');
+        if (dest !== href) { e.preventDefault(); location.assign(dest); return; }
+      }
+    } else if (href.charAt(0) === '#') hash = href.slice(1);
     if (hash === null) { if (open) setMenu(false); return; }
     var el = find(hash);
     if (!el) return;

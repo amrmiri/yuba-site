@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-title-ar="دعم يوبا">
+<html lang="en" data-en-path="/support/" data-ar-path="/ar/support/" data-title-ar="دعم يوبا">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -7,19 +7,26 @@
 <title>Yuba Support</title>
 <script>
 /* Language before the first paint (an Arabic visitor never sees English first), the Latin half of
-   the Arabic face fetched early, html.js for the enhanced layout, html.scrolled for the header. The rest is /site.js. */
+   the Arabic face fetched early, html.js for the enhanced layout, html.scrolled for the header. The rest is /site.js.
+   Every page has two addresses, data-en-path ("/privacy/") and data-ar-path ("/ar/privacy/"); both files hold both
+   languages, so the address simply follows the language shown — no reload. An /ar/ address always opens in Arabic. */
 (function (d) {
+  var en = d.getAttribute('data-en-path'), ar = d.getAttribute('data-ar-path');
+  var onAr = /^\/ar(\/|$)/.test(location.pathname);
   var s = null, q = null;
   try { s = localStorage.getItem('yuba-lang'); } catch (e) {}
   try { q = new URLSearchParams(location.search).get('lang'); } catch (e) {}
-  if (q === 'ar' || q === 'en') {
-    s = q;
-    try { localStorage.setItem('yuba-lang', q); } catch (e) {}
-    try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {}
-  } else if (s !== 'ar' && s !== 'en') {
+  if (q !== 'ar' && q !== 'en') q = null;
+  if (q) s = q;
+  else if (onAr) s = 'ar';
+  else if (s !== 'ar' && s !== 'en') {
     // no choice saved yet: a phone set to Arabic opens the Arabic page
     try { if (/^ar(-|$)/i.test((navigator.languages && navigator.languages[0]) || navigator.language || '')) s = 'ar'; } catch (e) {}
   }
+  if (q || onAr) { try { localStorage.setItem('yuba-lang', s); } catch (e) {} }
+  var want = s === 'ar' ? ar : en;
+  if (want && want !== location.pathname) { try { history.replaceState(null, '', want + location.hash); } catch (e) {} }
+  else if (q) { try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} }
   d.className = 'js';
   if (s === 'ar') {
     d.setAttribute('data-lang', 'ar'); d.lang = 'ar';
@@ -27,13 +34,16 @@
     l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
     l.href = '/fonts/noto-kufi-arabic-latin.woff2';
     document.head.appendChild(l);
-  }
+  } else { d.removeAttribute('data-lang'); d.lang = 'en'; }
   var on = false, f = function () { var y = (window.scrollY || 0) > 8; if (y !== on) { on = y; d.classList.toggle('scrolled', y); } };
   f(); addEventListener('scroll', f, { passive: true });
 })(document.documentElement);
 </script>
 <meta name="description" content="Help with Yuba: quick directions, missed bank texts, membership, exporting and deleting your data. Email support@yuba-app.com.">
 <link rel="canonical" href="https://yuba-app.com/support/">
+<link rel="alternate" hreflang="en" href="https://yuba-app.com/support/">
+<link rel="alternate" hreflang="ar" href="https://yuba-app.com/ar/support/">
+<link rel="alternate" hreflang="x-default" href="https://yuba-app.com/support/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ar_SA">
@@ -150,7 +160,7 @@
     </ul>
     <p>يستطيع التطبيق كتابة الجزء التقني عنك: <strong>الإعدادات ← المساعدة</strong> يفتح بريدًا إلى هذا العنوان وبداخله تقرير قصير جاهز — الإصدارات، وطراز جوالك، والأعداد، وهل الالتقاط يعمل. لا مبالغ، ولا أسماء، ولا نص رسائل، وتقرأ التقرير كاملًا قبل أن يُرسَل. (و<strong>الإعدادات ← بياناتك ← راسلنا</strong> يرسل التقرير نفسه.)</p>
     <h2 id="what-support-can-see-ar">ما الذي يراه الدعم</h2>
-    <p>لا شيء. رسائل بنكك ودفتر حساباتك موجودان على هاتفك وحده، ويوبا بلا خادم، فلا توجد نسخة في أي مكان نستطيع فتحها. نعمل انطلاقًا مما تصفه لنا، أو من تقرير «المساعدة» — وهو يحمل الأعداد والإصدارات والأوقات، ولا يحمل نص رسائلك أبدًا. ولا يوجد حساب خلف التطبيق أصلًا — لا تسجيل ولا كلمة مرور — فليس عندنا ما نبحث فيه أو نعيد ضبطه.</p>
+    <p>لا شيء. رسائل بنكك ودفتر حساباتك موجودان على جوالك وحده، ويوبا بلا خادم، فلا توجد نسخة في أي مكان نستطيع فتحها. نعمل انطلاقًا مما تصفه لنا، أو من تقرير «المساعدة» — وهو يحمل الأعداد والإصدارات والأوقات، ولا يحمل نص رسائلك أبدًا. ولا يوجد حساب خلف التطبيق أصلًا — لا تسجيل ولا كلمة مرور — فليس عندنا ما نبحث فيه أو نعيد ضبطه.</p>
     <p>الشيء الوحيد الذي يبقى في أيدينا هو البريد الذي ترسله: عنوانك وما كتبته. نستخدمه للرد عليك فقط، ولا نشاركه مع أحد، ونحذفه إذا طلبت.</p>
     <h2 id="quick-directions-ar">إرشادات سريعة</h2>
     <table>
@@ -169,7 +179,7 @@
     <h2 id="exporting-your-data-ar">تصدير بياناتك</h2>
     <p><strong>الإعدادات ← بياناتك ← تصدير كجدول بيانات.</strong> كل معاملة كنص CSV — احفظه أو الصقه في أي تطبيق جداول بيانات. التصدير متاح دائمًا، ولا تحجبه العضوية أبدًا.</p>
     <h2 id="deleting-everything-ar">حذف كل شيء</h2>
-    <p>احذف التطبيق. قاعدة البيانات موجودة على هاتفك وحده، فحذف التطبيق يحذفها كلها — لا نسخة على أي خادم في أي مكان، ولا شيء تطلب منا محوه. ويمكن أيضًا حذف البيانات من داخل التطبيق عبر <strong>الإعدادات ← بياناتك</strong>. ملاحظة صريحة واحدة: إذا كانت النسخة الاحتياطية لجهاز iPhone عندك تشمل يوبا، فاستعادتها قد تعيد البيانات. تلك النسخة ملكك أنت، تحت Apple ID الخاص بك — ولا نحتفظ نحن بأي نسخة.</p>
+    <p>احذف التطبيق. قاعدة البيانات موجودة على جوالك وحده، فحذف التطبيق يحذفها كلها — لا نسخة على أي خادم في أي مكان، ولا شيء تطلب منا محوه. ويمكن أيضًا حذف البيانات من داخل التطبيق عبر <strong>الإعدادات ← بياناتك</strong>. ملاحظة صريحة واحدة: إذا كانت النسخة الاحتياطية لجهاز iPhone عندك تشمل يوبا، فاستعادتها قد تعيد البيانات. تلك النسخة ملكك أنت، تحت Apple ID الخاص بك — ولا نحتفظ نحن بأي نسخة.</p>
       </div>
     </div>
     </article>
