@@ -1,17 +1,46 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-title-ar="سياسة خصوصية يوبا">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="dark">
-<title>Yuba Privacy Policy · Yuba</title>
-<meta name="description" content="How Yuba handles your data: your money stays on your phone. The complete policy.">
-<link rel="canonical" href="https://yuba-app.com/privacy">
+<title>Yuba Privacy Policy</title>
+<script>
+/* Language before the first paint (an Arabic visitor never sees English first), the Latin half of
+   the Arabic face fetched early, html.js for the enhanced layout, html.scrolled for the header. The rest is /site.js. */
+(function (d) {
+  var s = null, q = null;
+  try { s = localStorage.getItem('yuba-lang'); } catch (e) {}
+  try { q = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+  if (q === 'ar' || q === 'en') {
+    s = q;
+    try { localStorage.setItem('yuba-lang', q); } catch (e) {}
+    try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {}
+  } else if (s !== 'ar' && s !== 'en') {
+    // no choice saved yet: a phone set to Arabic opens the Arabic page
+    try { if (/^ar(-|$)/i.test((navigator.languages && navigator.languages[0]) || navigator.language || '')) s = 'ar'; } catch (e) {}
+  }
+  d.className = 'js';
+  if (s === 'ar') {
+    d.setAttribute('data-lang', 'ar'); d.lang = 'ar';
+    var l = document.createElement('link');
+    l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
+    l.href = '/fonts/noto-kufi-arabic-latin.woff2';
+    document.head.appendChild(l);
+  }
+  var on = false, f = function () { var y = (window.scrollY || 0) > 8; if (y !== on) { on = y; d.classList.toggle('scrolled', y); } };
+  f(); addEventListener('scroll', f, { passive: true });
+})(document.documentElement);
+</script>
+<meta name="description" content="How Yuba handles your data, in full. Your spending stays on your phone; nothing about your money reaches us unless you send it.">
+<link rel="canonical" href="https://yuba-app.com/privacy/">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
 <meta property="og:site_name" content="Yuba · يوبا">
-<meta property="og:url" content="https://yuba-app.com/privacy">
-<meta property="og:title" content="Yuba Privacy Policy · Yuba">
-<meta property="og:description" content="How Yuba handles your data: your money stays on your phone. The complete policy.">
+<meta property="og:url" content="https://yuba-app.com/privacy/">
+<meta property="og:title" content="Yuba Privacy Policy">
+<meta property="og:description" content="How Yuba handles your data, in full. Your spending stays on your phone; nothing about your money reaches us unless you send it.">
 <meta property="og:image" content="https://yuba-app.com/og/yuba-og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -23,50 +52,54 @@
 <meta name="theme-color" content="#0b0c0f">
 <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/site.css">
+<script src="/site.js" async></script>
 <noscript><style>body [lang="ar"]{display:revert !important}.langbtn{display:none}</style></noscript>
 </head>
-<body>
-<div class="page wide doc">
-
-  <header class="site">
-    <a class="lockup" href="/">
+<body class="p-doc">
+<a class="skip" href="#main"><span lang="en">Skip to content</span><span lang="ar">انتقل إلى المحتوى</span></a>
+<header class="site">
+  <div class="head-in">
+    <a class="lockup" href="/" aria-label="Yuba · يوبا, home" data-aria-en="Yuba · يوبا, home" data-aria-ar="يوبا · Yuba، الصفحة الرئيسية">
       <span class="latin">YUBA</span><span class="dot"></span><span class="arabic">يوبا</span>
     </a>
     <button class="langbtn" type="button">
       <span lang="ar">العربية</span><span lang="en">English</span>
     </button>
-  </header>
+    <button class="menubtn" type="button" aria-expanded="false" aria-controls="toc-en" data-controls-en="toc-en" data-controls-ar="toc-ar" aria-label="On this page" data-aria-en="On this page" data-aria-ar="في هذه الصفحة"><i></i><i></i></button>
+  </div>
+</header>
+<div class="page wide doc">
 
-  <main>
+  <main id="main">
     <article lang="en">
     <div class="doc-grid">
-      <aside class="toc">
+      <nav class="toc" id="toc-en" aria-label="On this page">
         <p class="toc-title">On this page</p>
         <ol>
-        <li><a href="#en-1">The short version</a></li>
-        <li><a href="#en-2">The developer</a></li>
-        <li><a href="#en-3">Your data on your phone</a></li>
-        <li><a href="#en-4">Data collection</a></li>
-        <li><a href="#en-5">Third parties</a></li>
-        <li><a href="#en-6">Network traffic</a></li>
-        <li><a href="#en-7">Payments</a></li>
-        <li><a href="#en-8">Backups</a></li>
-        <li><a href="#en-9">Retention and deletion</a></li>
-        <li><a href="#en-10">Your rights</a></li>
-        <li><a href="#en-11">The support inbox</a></li>
-        <li><a href="#en-12">Diagnostics you choose to send</a></li>
-        <li><a href="#en-13">Breaches</a></li>
-        <li><a href="#en-14">Children</a></li>
-        <li><a href="#en-15">Changes</a></li>
-        <li><a href="#en-16">Contact</a></li>
+        <li><a href="#the-short-version">The short version</a></li>
+        <li><a href="#the-developer">The developer</a></li>
+        <li><a href="#your-data-on-your-phone">Your data on your phone</a></li>
+        <li><a href="#data-collection">Data collection</a></li>
+        <li><a href="#third-parties">Third parties</a></li>
+        <li><a href="#network-traffic">Network traffic</a></li>
+        <li><a href="#payments">Payments</a></li>
+        <li><a href="#backups">Backups</a></li>
+        <li><a href="#retention-and-deletion">Retention and deletion</a></li>
+        <li><a href="#your-rights">Your rights</a></li>
+        <li><a href="#the-support-inbox">The support inbox</a></li>
+        <li><a href="#diagnostics-you-choose-to-send">Diagnostics you choose to send</a></li>
+        <li><a href="#breaches">Breaches</a></li>
+        <li><a href="#children">Children</a></li>
+        <li><a href="#changes">Changes</a></li>
+        <li><a href="#contact">Contact</a></li>
         </ol>
         <a class="toc-home" href="/">Yuba home</a>
-      </aside>
+      </nav>
       <div class="doc-body">
     <h1>Yuba Privacy Policy</h1>
     <p class="date">Effective 11 October 2026</p>
     <p>Yuba builds your spending ledger from your own bank messages, on your phone, and keeps it there. We have no server, so nothing you do in Yuba can reach us. This page writes that down in the detail a reviewer and a careful reader both need. The promise is precise on purpose.</p>
-    <h2 id="en-1">The short version</h2>
+    <h2 id="the-short-version">The short version</h2>
     <table class="facts">
       <tr><td>Where your messages live</td><td>Your phone</td></tr>
       <tr><td>Where your ledger lives</td><td>Your phone</td></tr>
@@ -76,29 +109,29 @@
       <tr><td>Data about your money we collect</td><td>None</td></tr>
       <tr><td>Sent by the app on its own</td><td>The update check: a random install number and the version (see Network traffic)</td></tr>
     </table>
-    <h2 id="en-2">The developer</h2>
+    <h2 id="the-developer">The developer</h2>
     <p>Yuba (يوبا) is made by Amr Miri, for people in Saudi Arabia; commercially, Yuba operates from the United Arab Emirates. Nobody on our side holds your data, and no Yuba copy of it exists anywhere — the only copies are the one on your phone and the one in your own iPhone backup. Questions and requests: <strong>support@yuba-app.com</strong>.</p>
-    <h2 id="en-3">Your data on your phone</h2>
+    <h2 id="your-data-on-your-phone">Your data on your phone</h2>
     <p>You install an iOS Shortcut that hands your bank SMS messages to Yuba. The app reads them on the device with fixed, deterministic rules — no AI, no cloud service — and builds a private ledger in a local database that only your phone holds.</p>
     <p>Yuba never reads messages in the background; it sees only what the Shortcut hands it. It does not touch your contacts, your location, your photos, or any advertising identifier. Reminders are scheduled on the device itself — Yuba does not have the remote push entitlement, so it cannot receive a push from anywhere.</p>
     <p>You can export your data at any time. Export is never behind the membership.</p>
-    <h2 id="en-4">Data collection</h2>
+    <h2 id="data-collection">Data collection</h2>
     <p>None about your money. Your messages, balances, and history are processed and stored only on your device. We cannot see them, receive them, or recover them. The one thing Yuba sends by itself is the update check under Network traffic — a random install number and the app's version, never anything about your money. The one copy of your data that can exist off your phone sits inside your own iPhone backup, under your Apple ID (see Backups).</p>
-    <h2 id="en-5">Third parties</h2>
+    <h2 id="third-parties">Third parties</h2>
     <p>No one receives your data. No analytics SDKs, no ad networks, no data brokers. Nothing is sold, shared, or disclosed to anyone — there is nothing on our side to share.</p>
     <p>The app talks to exactly two outside services, and neither gets anything about your money: Expo's update service and Apple's App Store. Both are listed under Network traffic.</p>
-    <h2 id="en-6">Network traffic</h2>
+    <h2 id="network-traffic">Network traffic</h2>
     <p>The complete list of what Yuba sends over the internet:</p>
     <ol>
       <li><strong>The update check.</strong> Each time Yuba opens or comes back to the screen, it asks Expo's update service (u.expo.dev) whether a newer version exists. The request carries the app's version numbers, the phone's platform and a random number that marks this install — made on the phone, tied to no account or Apple ID, new again after a reinstall. Like any internet request it shows Expo your phone's internet address, and if Yuba ever crashed at start-up, the next check also carries that error text so a broken update can be rolled back. Expo can count the installs that checked; it never sees a transaction, a bank or a name.</li>
       <li><strong>Apple's App Store.</strong> Yuba asks Apple for the membership's prices and whether you are a member. When you buy, Apple's own payment sheet appears, and the payment runs entirely between you and Apple.</li>
     </ol>
     <p>That is the whole list. Links you tap — these pages, or the iCloud link that adds the YUBA shortcut during setup — open outside Yuba.</p>
-    <h2 id="en-7">Payments</h2>
+    <h2 id="payments">Payments</h2>
     <p>Yuba's membership is billed by Apple through the App Store, under Apple's privacy policy. We have no server, so a purchase sends us nothing: no name, no card details, no Apple ID, no identity. Apple handles payment, renewal, and refunds. We never learn who our members are, and we keep no customer records — Apple holds the transaction.</p>
-    <h2 id="en-8">Backups</h2>
+    <h2 id="backups">Backups</h2>
     <p>Your ledger rides your own iPhone backup — your Apple ID, Apple's encryption. A standard iCloud backup is encrypted with keys Apple holds; it is end-to-end encrypted only when Advanced Data Protection is on. We hold no copy. Restore your phone and Yuba comes back with it; nothing in that passes through us. iPhone Settings can leave Yuba out of the backup if you prefer.</p>
-    <h2 id="en-9">Retention and deletion</h2>
+    <h2 id="retention-and-deletion">Retention and deletion</h2>
     <p>Your data stays on your phone for as long as you choose to keep it.</p>
     <ul>
       <li>Delete the app, and the data on the phone is deleted with it, immediately.</li>
@@ -106,7 +139,7 @@
       <li>Your own iPhone backup may still hold a copy until you update or delete that backup. It is yours, under your Apple ID; we cannot touch it.</li>
     </ul>
     <p>There is no server-side copy anywhere, so there is nothing to ask us to delete. Deletion is entirely in your hands.</p>
-    <h2 id="en-10">Your rights</h2>
+    <h2 id="your-rights">Your rights</h2>
     <p>Saudi Arabia's Personal Data Protection Law gives you rights over personal data collected about you: to be informed, to access it, to obtain a copy, to correct it, to destroy it, and to withdraw consent.</p>
     <p>We designed Yuba so that no personal data ever reaches us. The law's duties fall on whoever collects your data, and nobody collects it. The processing that happens — your bank messages becoming your ledger — is done by you, on your own device, for your own personal use, which the law itself leaves alone. So these rights are already in your hands, served by the phone itself:</p>
     <ul>
@@ -115,9 +148,9 @@
       <li><strong>Withdrawing consent</strong> — stop running the Shortcut, or delete the app. Nothing of yours lingers with us, because nothing of yours ever reached us.</li>
     </ul>
     <p>The only exceptions are the two below, and both are messages you write and send us yourself.</p>
-    <h2 id="en-11">The support inbox</h2>
+    <h2 id="the-support-inbox">The support inbox</h2>
     <p>If you email support@yuba-app.com, we receive your email address and whatever the email carries — your own words, or a letter Yuba drafted that you chose to send (listed below). That is the only personal data that ever reaches us, and only because you chose to send it. We use it solely to answer you. We never share or sell it. Ask in the same thread and we will send you a copy of what we hold, correct it, or delete it.</p>
-    <h2 id="en-12">Diagnostics you choose to send</h2>
+    <h2 id="diagnostics-you-choose-to-send">Diagnostics you choose to send</h2>
     <p>Yuba can draft emails for you to send us. The app sends nothing itself: each opens in your own mail app, you can edit or delete any part of it, and it leaves only when you tap Send.</p>
     <ul>
       <li><strong>Teach Yuba</strong> (Settings): the wording of bank messages Yuba could not read, with the sender's name — every number replaced by a nine, people's names cut to initials, balance lines and dates removed — plus Yuba's version and a random six-character tag that is not a device id.</li>
@@ -126,46 +159,46 @@
       <li><strong>The crash screen</strong>: only if the app ever breaks — the error text and Yuba's version.</li>
     </ul>
     <p>We use these messages solely to improve how Yuba reads bank texts and to answer you.</p>
-    <h2 id="en-13">Breaches</h2>
+    <h2 id="breaches">Breaches</h2>
     <p>There is no Yuba database of users to breach. The only copies of your data are the one on your phone and the one in your own backup. If an incident ever touched the support inbox — the one narrow place we hold anything of yours — we would notify the Saudi Data &amp; AI Authority within 72 hours and write to the people affected without delay.</p>
-    <h2 id="en-14">Children</h2>
+    <h2 id="children">Children</h2>
     <p>Yuba is not directed at children.</p>
-    <h2 id="en-15">Changes</h2>
+    <h2 id="changes">Changes</h2>
     <p>If this policy changes, the new version appears on this page with a new effective date. The promise itself is built into how the app works: keeping your data on your phone is the design, and changing that would mean building a different app.</p>
-    <h2 id="en-16">Contact</h2>
+    <h2 id="contact">Contact</h2>
     <p><strong>support@yuba-app.com</strong> — for this policy, your data, or anything else about Yuba.</p>
       </div>
     </div>
     </article>
     <article lang="ar" dir="rtl">
     <div class="doc-grid">
-      <aside class="toc">
+      <nav class="toc" id="toc-ar" aria-label="في هذه الصفحة">
         <p class="toc-title">في هذه الصفحة</p>
         <ol>
-        <li><a href="#ar-1">الخلاصة</a></li>
-        <li><a href="#ar-2">المطوِّر</a></li>
-        <li><a href="#ar-3">بياناتك على هاتفك</a></li>
-        <li><a href="#ar-4">جمع البيانات</a></li>
-        <li><a href="#ar-5">الجهات الخارجية</a></li>
-        <li><a href="#ar-6">حركة الشبكة</a></li>
-        <li><a href="#ar-7">المدفوعات</a></li>
-        <li><a href="#ar-8">النسخ الاحتياطي</a></li>
-        <li><a href="#ar-9">الاحتفاظ والحذف</a></li>
-        <li><a href="#ar-10">حقوقك</a></li>
-        <li><a href="#ar-11">بريد الدعم</a></li>
-        <li><a href="#ar-12">تشخيصات ترسلها بنفسك</a></li>
-        <li><a href="#ar-13">الاختراقات</a></li>
-        <li><a href="#ar-14">الأطفال</a></li>
-        <li><a href="#ar-15">التغييرات</a></li>
-        <li><a href="#ar-16">التواصل</a></li>
+        <li><a href="#the-short-version-ar">الخلاصة</a></li>
+        <li><a href="#the-developer-ar">المطوِّر</a></li>
+        <li><a href="#your-data-on-your-phone-ar">بياناتك على هاتفك</a></li>
+        <li><a href="#data-collection-ar">جمع البيانات</a></li>
+        <li><a href="#third-parties-ar">الجهات الخارجية</a></li>
+        <li><a href="#network-traffic-ar">حركة الشبكة</a></li>
+        <li><a href="#payments-ar">المدفوعات</a></li>
+        <li><a href="#backups-ar">النسخ الاحتياطي</a></li>
+        <li><a href="#retention-and-deletion-ar">الاحتفاظ والحذف</a></li>
+        <li><a href="#your-rights-ar">حقوقك</a></li>
+        <li><a href="#the-support-inbox-ar">بريد الدعم</a></li>
+        <li><a href="#diagnostics-you-choose-to-send-ar">تشخيصات ترسلها بنفسك</a></li>
+        <li><a href="#breaches-ar">الاختراقات</a></li>
+        <li><a href="#children-ar">الأطفال</a></li>
+        <li><a href="#changes-ar">التغييرات</a></li>
+        <li><a href="#contact-ar">التواصل</a></li>
         </ol>
         <a class="toc-home" href="/">الصفحة الرئيسية</a>
-      </aside>
+      </nav>
       <div class="doc-body">
     <h1>سياسة خصوصية يوبا</h1>
     <p class="date">تسري اعتبارًا من 11 أكتوبر 2026</p>
     <p>يوبا يبني سجلّ مصاريفك من رسائل بنكك أنت، على هاتفك، ويبقيه هناك. لا خادم لدينا، فلا شيء تفعله في يوبا يمكن أن يصل إلينا. هذه الصفحة تدوّن ذلك بالتفصيل الذي يحتاجه مراجع المتجر ويحتاجه القارئ المتأنّي على السواء. والوعد دقيق عن قصد.</p>
-    <h2 id="ar-1">الخلاصة</h2>
+    <h2 id="the-short-version-ar">الخلاصة</h2>
     <table class="facts">
       <tr><td>أين تعيش رسائلك</td><td>هاتفك</td></tr>
       <tr><td>أين يعيش سجلّك</td><td>هاتفك</td></tr>
@@ -175,29 +208,29 @@
       <tr><td>بيانات عن مالك نجمعها</td><td>لا شيء</td></tr>
       <tr><td>ما يرسله التطبيق من تلقاء نفسه</td><td>فحص التحديث: رقم تثبيت عشوائي ورقم الإصدار (انظر «حركة الشبكة»)</td></tr>
     </table>
-    <h2 id="ar-2">المطوِّر</h2>
+    <h2 id="the-developer-ar">المطوِّر</h2>
     <p>يوبا (Yuba) من صنع عمرو ميري، للناس في السعودية؛ وتجاريًا يعمل يوبا من الإمارات العربية المتحدة. لا أحد لدينا يحتفظ ببياناتك، ولا نسخة لدى يوبا منها في أي مكان — النسختان الوحيدتان هما التي على هاتفك والتي في نسخة iPhone الاحتياطية الخاصة بك. للأسئلة والطلبات: <strong>support@yuba-app.com</strong>.</p>
-    <h2 id="ar-3">بياناتك على هاتفك</h2>
+    <h2 id="your-data-on-your-phone-ar">بياناتك على هاتفك</h2>
     <p>تثبّت اختصارًا في iOS يسلّم رسائل بنكك النصية إلى يوبا. يقرؤها التطبيق على الجهاز بقواعد ثابتة — بلا ذكاء اصطناعي وبلا خدمة سحابية — ويبني سجلًّا خاصًّا في قاعدة بيانات محلية لا يحملها سوى هاتفك.</p>
     <p>لا يقرأ يوبا الرسائل في الخلفية أبدًا؛ هو لا يرى إلا ما يسلّمه إليه الاختصار. ولا يمسّ جهات اتصالك، ولا موقعك، ولا صورك، ولا أي معرّف إعلاني. والتذكيرات تُجدوَل على الجهاز نفسه — يوبا لا يملك أصلًا صلاحية الإشعارات عن بُعد، فلا يمكن أن يصله إشعار من أي مكان.</p>
     <p>يمكنك تصدير بياناتك في أي وقت. والتصدير لا يُحجب خلف العضوية أبدًا.</p>
-    <h2 id="ar-4">جمع البيانات</h2>
+    <h2 id="data-collection-ar">جمع البيانات</h2>
     <p>لا شيء عن مالك. رسائلك وأرصدتك وسجلّك تُعالَج وتُخزَّن على جهازك وحده. لا نستطيع رؤيتها، ولا استقبالها، ولا استعادتها. والشيء الوحيد الذي يرسله يوبا من تلقاء نفسه هو فحص التحديث المذكور تحت «حركة الشبكة» — رقم تثبيت عشوائي ورقم إصدار التطبيق، ولا شيء عن مالك أبدًا. والنسخة الوحيدة من بياناتك التي قد توجد خارج هاتفك تقع داخل نسخة iPhone الاحتياطية الخاصة بك، تحت Apple ID الخاص بك (انظر «النسخ الاحتياطي»).</p>
-    <h2 id="ar-5">الجهات الخارجية</h2>
+    <h2 id="third-parties-ar">الجهات الخارجية</h2>
     <p>لا أحد يستقبل بياناتك. لا حِزم تحليلات، ولا شبكات إعلانات، ولا وسطاء بيانات. لا شيء يُباع أو يُشارَك أو يُكشَف لأي جهة — إذ لا شيء عندنا أصلًا ليُشارَك.</p>
     <p>يتصل التطبيق بخدمتين خارجيتين اثنتين لا غير، ولا يصل إلى أيٍّ منهما شيء عن مالك: خدمة التحديثات لدى Expo، ومتجر App Store من Apple. وكلتاهما مذكورة تحت «حركة الشبكة».</p>
-    <h2 id="ar-6">حركة الشبكة</h2>
+    <h2 id="network-traffic-ar">حركة الشبكة</h2>
     <p>القائمة الكاملة لما يرسله يوبا عبر الإنترنت:</p>
     <ol>
       <li><strong>فحص التحديث.</strong> في كل مرة يُفتح فيها يوبا أو يعود إلى الشاشة، يسأل خدمة تحديثات Expo (u.expo.dev) إن كانت هناك نسخة أحدث. يحمل الطلب أرقام إصدار التطبيق ونوع الجهاز ورقمًا عشوائيًا يميّز هذا التثبيت: يُنشأ على الجوال، ولا يرتبط بأي حساب ولا بحساب Apple الخاص بك، ويتجدد بعد إعادة التثبيت. وكأي طلب عبر الإنترنت، يظهر لـ Expo عنوان الإنترنت لجوالك، وإن تعطّل يوبا يومًا عند التشغيل، يحمل التحقق التالي نص ذلك الخطأ أيضًا ليُسحب التحديث المعطوب. يستطيع Expo عدّ التثبيتات التي تحقّقت، ولا يرى أبدًا عملية أو بنكًا أو اسمًا.</li>
       <li><strong>متجر App Store من Apple.</strong> يسأل يوبا Apple عن أسعار العضوية وهل أنت عضو. وعندما تشتري، تظهر واجهة الدفع من Apple نفسها، ويجري الدفع كله بينك وبين Apple.</li>
     </ol>
     <p>هذه هي القائمة كاملة. أما الروابط التي تضغطها — هذه الصفحات، أو رابط iCloud الذي يضيف اختصار YUBA أثناء الإعداد — فتُفتح خارج يوبا.</p>
-    <h2 id="ar-7">المدفوعات</h2>
+    <h2 id="payments-ar">المدفوعات</h2>
     <p>عضوية يوبا تحصّلها Apple عبر App Store، وتحت سياسة خصوصية Apple. لا خادم لدينا، فالشراء لا يرسل إلينا شيئًا: لا اسم، ولا بيانات بطاقة، ولا Apple ID، ولا هوية. Apple تتولى الدفع والتجديد والاسترداد. نحن لا نعرف أبدًا من أعضاؤنا، ولا نحتفظ بأي سجلات للعملاء — العملية كلها بيد Apple.</p>
-    <h2 id="ar-8">النسخ الاحتياطي</h2>
+    <h2 id="backups-ar">النسخ الاحتياطي</h2>
     <p>سجلّك ينتقل ضمن نسخة iPhone الاحتياطية الخاصة بك — بحساب Apple ID الخاص بك، وتشفير Apple. ونسخة iCloud الاحتياطية العادية مشفّرة بمفاتيح تحتفظ بها Apple، ولا تكون مشفّرة من طرف إلى طرف إلا حين تكون «الحماية المتقدمة للبيانات» مفعّلة. لا نحتفظ بأي نسخة. حين تستعيد هاتفك يعود يوبا معه؛ ولا شيء من ذلك يمرّ عبرنا. ويمكن لإعدادات iPhone استثناء يوبا من النسخة الاحتياطية إن شئت.</p>
-    <h2 id="ar-9">الاحتفاظ والحذف</h2>
+    <h2 id="retention-and-deletion-ar">الاحتفاظ والحذف</h2>
     <p>تبقى بياناتك على هاتفك ما دمت تختار إبقاءها.</p>
     <ul>
       <li>احذف التطبيق، وتُحذف معه البيانات التي على الهاتف، فورًا.</li>
@@ -205,7 +238,7 @@
       <li>قد تظل النسخة الاحتياطية لهاتفك محتفظةً بنسخة من بياناتك إلى أن تحدّث تلك النسخة الاحتياطية أو تحذفها. وهي ملكك، تحت Apple ID الخاص بك؛ ونحن لا نستطيع لمسها.</li>
     </ul>
     <p>لا توجد نسخة على خادم في أي مكان، فليس هناك ما يُطلب منا حذفه. الحذف كله بيدك.</p>
-    <h2 id="ar-10">حقوقك</h2>
+    <h2 id="your-rights-ar">حقوقك</h2>
     <p>نظام حماية البيانات الشخصية في المملكة العربية السعودية يمنحك حقوقًا على البيانات الشخصية التي تُجمع عنك: أن تُعلَم بها، وأن تطّلع عليها، وأن تحصل على نسخة منها، وأن تصحّحها، وأن تتلفها، وأن ترجع عن موافقتك.</p>
     <p>صمّمنا يوبا بحيث لا يصلنا أي بيان شخصي أبدًا. واجبات النظام تقع على من يجمع بياناتك، ولا أحد يجمعها. والمعالجة التي تحدث — تحوّل رسائل بنكك إلى سجلّك — تقوم بها أنت، على جهازك، لاستخدامك الشخصي، وهذا ما يتركه النظام نفسه خارج نطاقه. فهذه الحقوق إذًا في يدك أصلًا، ويؤدّيها الهاتف نفسه:</p>
     <ul>
@@ -214,9 +247,9 @@
       <li><strong>الرجوع عن الموافقة</strong> — أوقف تشغيل الاختصار، أو احذف التطبيق. لا يبقى عندنا شيء يخصّك، لأن شيئًا يخصّك لم يصلنا أصلًا.</li>
     </ul>
     <p>الاستثناءان الوحيدان هما الموضحان أدناه، وكلاهما رسالة تكتبها وترسلها أنت بنفسك.</p>
-    <h2 id="ar-11">بريد الدعم</h2>
+    <h2 id="the-support-inbox-ar">بريد الدعم</h2>
     <p>إذا راسلتنا على support@yuba-app.com يصلنا عنوان بريدك الإلكتروني وما تحمله الرسالة — كلماتك أنت، أو رسالة أعدّها يوبا واخترت أنت إرسالها (موضّحة أدناه). هذه هي البيانات الشخصية الوحيدة التي تصلنا على الإطلاق، وهي لا تصلنا إلا لأنك اخترت إرسالها. نستخدمها للرد عليك لا غير، ولا نشاركها ولا نبيعها أبدًا. اطلب في سلسلة الرسائل نفسها ونرسل إليك نسخة مما لدينا، أو نصحّحه، أو نحذفه.</p>
-    <h2 id="ar-12">تشخيصات ترسلها بنفسك</h2>
+    <h2 id="diagnostics-you-choose-to-send-ar">تشخيصات ترسلها بنفسك</h2>
     <p>يستطيع يوبا أن يُعِدّ لك رسائل بريد ترسلها إلينا. التطبيق لا يرسل شيئًا بنفسه: تُفتح كل رسالة في تطبيق البريد لديك، ويمكنك تعديل أي جزء منها أو حذفه، ولا تغادر جهازك إلا عندما تضغط أنت على &quot;إرسال&quot;.</p>
     <ul>
       <li><strong>علِّم يوبا</strong> (الإعدادات): صياغة رسائل البنك التي لم يستطع يوبا قراءتها، مع اسم المرسل — مع استبدال كل رقم بالرقم ٩، واختصار أسماء الأشخاص إلى أحرفها الأولى، وحذف أسطر الرصيد والتواريخ — ومعها إصدار يوبا ووسم عشوائي من ستة أحرف ليس معرّفًا للجهاز.</li>
@@ -225,13 +258,13 @@
       <li><strong>شاشة العطل</strong>: فقط إن تعطّل التطبيق يومًا — نص الخطأ وإصدار يوبا.</li>
     </ul>
     <p>نستخدم هذه الرسائل لتحسين قراءة يوبا لرسائل البنوك وللرد عليك لا غير.</p>
-    <h2 id="ar-13">الاختراقات</h2>
+    <h2 id="breaches-ar">الاختراقات</h2>
     <p>لا توجد لدى يوبا قاعدة بيانات مستخدمين تُخترق. النسختان الوحيدتان من بياناتك هما التي على هاتفك والتي في نسختك الاحتياطية. وإذا مسّ حادثٌ يومًا بريد الدعم — الموضع الضيّق الوحيد الذي نحمل فيه شيئًا يخصّك — فسنبلّغ الهيئة السعودية للبيانات والذكاء الاصطناعي (سدايا) خلال 72 ساعة، ونكتب إلى المتأثرين من غير تأخير.</p>
-    <h2 id="ar-14">الأطفال</h2>
+    <h2 id="children-ar">الأطفال</h2>
     <p>يوبا ليس موجّهًا إلى الأطفال.</p>
-    <h2 id="ar-15">التغييرات</h2>
+    <h2 id="changes-ar">التغييرات</h2>
     <p>إذا تغيّرت هذه السياسة ظهرت النسخة الجديدة على هذه الصفحة بتاريخ سريان جديد. الوعد نفسه مبني في طريقة عمل التطبيق: بقاء بياناتك على هاتفك هو التصميم نفسه، وتغيير ذلك يعني بناء تطبيق آخر.</p>
-    <h2 id="ar-16">التواصل</h2>
+    <h2 id="contact-ar">التواصل</h2>
     <p><strong>support@yuba-app.com</strong> — لهذه السياسة، أو لبياناتك، أو لأي شيء آخر عن يوبا.</p>
       </div>
     </div>
@@ -243,55 +276,12 @@
     <span><span lang="en">Built in Saudi Arabia</span><span lang="ar">صُنع في السعودية</span></span>
     <span class="quiet"><span lang="en">No cookies, no trackers.</span><span lang="ar">لا كوكيز ولا تتبّع.</span></span>
     <span class="spacer"></span>
-    <a href="/privacy"><span lang="en">Privacy</span><span lang="ar">الخصوصية</span></a>
-    <a href="/terms"><span lang="en">Terms</span><span lang="ar">الشروط</span></a>
-    <a href="/support"><span lang="en">Support</span><span lang="ar">الدعم</span></a>
+    <a href="/privacy/"><span lang="en">Privacy</span><span lang="ar">الخصوصية</span></a>
+    <a href="/terms/"><span lang="en">Terms</span><span lang="ar">الشروط</span></a>
+    <a href="/support/"><span lang="en">Support</span><span lang="ar">الدعم</span></a>
     <a href="mailto:support@yuba-app.com">support@yuba-app.com</a>
   </footer>
 
 </div>
-<script>
-(function () {
-  var el = document.documentElement;
-  function apply(ar) {
-    if (ar) el.setAttribute('data-lang', 'ar'); else el.removeAttribute('data-lang');
-    el.lang = ar ? 'ar' : 'en';
-  }
-  var s = null;
-  try { s = localStorage.getItem('yuba-lang'); } catch (e) {}
-  // No choice saved yet: a phone set to Arabic opens the Arabic page.
-  if (s !== 'ar' && s !== 'en') {
-    try { if (/^ar(?:-|$)/i.test((navigator.languages && navigator.languages[0]) || navigator.language || '')) s = 'ar'; } catch (e) {}
-  }
-  try {
-    var q = new URLSearchParams(location.search).get('lang');
-    if (q === 'ar' || q === 'en') {
-      s = q;
-      try { localStorage.setItem('yuba-lang', q); } catch (e) {}
-      history.replaceState(null, '', location.pathname);
-    }
-  } catch (e) {}
-  apply(s === 'ar');
-  if ('IntersectionObserver' in window) {
-    var marks = {};
-    document.querySelectorAll('.toc a').forEach(function (a) { marks[a.getAttribute('href').slice(1)] = a; });
-    var seen = new IntersectionObserver(function (es) {
-      es.forEach(function (x) {
-        if (!x.isIntersecting || !marks[x.target.id]) return;
-        document.querySelectorAll('.toc a.on').forEach(function (a) { a.classList.remove('on'); });
-        marks[x.target.id].classList.add('on');
-      });
-    }, { rootMargin: '0px 0px -70% 0px' });
-    document.querySelectorAll('.doc-body h2[id]').forEach(function (h) { seen.observe(h); });
-  }
-  document.addEventListener('click', function (e) {
-    var b = e.target.closest('.langbtn');
-    if (!b) return;
-    var ar = el.getAttribute('data-lang') !== 'ar';
-    apply(ar);
-    try { localStorage.setItem('yuba-lang', ar ? 'ar' : 'en'); } catch (e) {}
-  });
-})();
-</script>
 </body>
 </html>

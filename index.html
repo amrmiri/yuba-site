@@ -1,13 +1,42 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-title-ar="يوبا · Yuba — أين تذهب فلوسك؟ الجواب في رسائل بنكك">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="dark">
-<title>Yuba · يوبا</title>
+<title>Yuba · يوبا — your bank texts, added up</title>
+<script>
+/* Language before the first paint (an Arabic visitor never sees English first), the Latin half of
+   the Arabic face fetched early, html.js for the enhanced layout, html.scrolled for the header. The rest is /site.js. */
+(function (d) {
+  var s = null, q = null;
+  try { s = localStorage.getItem('yuba-lang'); } catch (e) {}
+  try { q = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+  if (q === 'ar' || q === 'en') {
+    s = q;
+    try { localStorage.setItem('yuba-lang', q); } catch (e) {}
+    try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {}
+  } else if (s !== 'ar' && s !== 'en') {
+    // no choice saved yet: a phone set to Arabic opens the Arabic page
+    try { if (/^ar(-|$)/i.test((navigator.languages && navigator.languages[0]) || navigator.language || '')) s = 'ar'; } catch (e) {}
+  }
+  d.className = 'js';
+  if (s === 'ar') {
+    d.setAttribute('data-lang', 'ar'); d.lang = 'ar';
+    var l = document.createElement('link');
+    l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous';
+    l.href = '/fonts/noto-kufi-arabic-latin.woff2';
+    document.head.appendChild(l);
+  }
+  var on = false, f = function () { var y = (window.scrollY || 0) > 8; if (y !== on) { on = y; d.classList.toggle('scrolled', y); } };
+  f(); addEventListener('scroll', f, { passive: true });
+})(document.documentElement);
+</script>
 <meta name="description" content="Your bank texts you all month. Yuba adds it up — it reads the texts your bank already sends, right on your iPhone, and shows you where your money went.">
 <link rel="canonical" href="https://yuba-app.com/">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
 <meta property="og:site_name" content="Yuba · يوبا">
 <meta property="og:url" content="https://yuba-app.com/">
 <meta property="og:title" content="Yuba — your bank texts you all month. Yuba adds it up.">
@@ -23,16 +52,18 @@
 <meta name="theme-color" content="#0b0c0f">
 <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/site.css">
+<script src="/site.js" async></script>
 <noscript><style>body [lang="ar"]{display:revert !important}.langbtn{display:none}</style></noscript>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Yuba","alternateName":"يوبا","url":"https://yuba-app.com/","inLanguage":["en","ar"]}</script>
 </head>
-<body>
-<div class="page wide">
-
-  <header class="site">
-    <a class="lockup" href="/">
+<body class="p-home">
+<a class="skip" href="#main"><span lang="en">Skip to content</span><span lang="ar">انتقل إلى المحتوى</span></a>
+<header class="site">
+  <div class="head-in">
+    <a class="lockup" href="/" aria-label="Yuba · يوبا, home" data-aria-en="Yuba · يوبا, home" data-aria-ar="يوبا · Yuba، الصفحة الرئيسية">
       <span class="latin">YUBA</span><span class="dot"></span><span class="arabic">يوبا</span>
     </a>
-    <nav class="jump">
+    <nav class="jump" aria-label="Sections" data-aria-en="Sections" data-aria-ar="أقسام الصفحة">
       <a href="#how"><span lang="en">How it works</span><span lang="ar">كيف يعمل</span></a>
       <a href="#price"><span lang="en">Price</span><span lang="ar">السعر</span></a>
       <a href="#faq"><span lang="en">Questions</span><span lang="ar">أسئلة</span></a>
@@ -40,9 +71,24 @@
     <button class="langbtn" type="button">
       <span lang="ar">العربية</span><span lang="en">English</span>
     </button>
-  </header>
+    <button class="menubtn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu" data-aria-en="Menu" data-aria-ar="القائمة"><i></i><i></i></button>
+  </div>
+  <div class="menu" id="menu">
+    <nav class="menu-in" aria-label="Menu" data-aria-en="Menu" data-aria-ar="القائمة">
+      <a href="#how"><span lang="en">How it works</span><span lang="ar">كيف يعمل</span></a>
+      <a href="#price"><span lang="en">Price</span><span lang="ar">السعر</span></a>
+      <a href="#faq"><span lang="en">Questions</span><span lang="ar">أسئلة شائعة</span></a>
+      <span class="menu-pages">
+        <a href="/privacy/"><span lang="en">Privacy</span><span lang="ar">الخصوصية</span></a>
+        <a href="/terms/"><span lang="en">Terms</span><span lang="ar">الشروط</span></a>
+        <a href="/support/"><span lang="en">Support</span><span lang="ar">الدعم</span></a>
+      </span>
+    </nav>
+  </div>
+</header>
+<div class="page wide">
 
-  <main>
+  <main id="main">
     <!-- ══════════════════════════ English ══════════════════════════ -->
     <section class="home" lang="en">
       <div class="hero-grid">
@@ -95,7 +141,7 @@ At: JAHEZ</p>
       </div>
 
       <div class="band how" id="how">
-        <div class="band-head"><p class="kicker">How it works</p></div>
+        <div class="band-head"><h2 class="kicker">How it works</h2></div>
         <ol class="steps">
           <li><span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7" width="19" height="10" rx="5"/><circle cx="16.5" cy="12" r="2.6"/></svg></span><span class="num">01</span><h3>Set up once</h3><p>On iPhone, in Apple’s Shortcuts app. On Android, a single permission.</p></li>
           <li><span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19M6.5 14.5h4"/></svg></span><span class="num">02</span><h3>Pay as usual</h3><p>Yuba reads your new bank texts, from any Saudi bank, on your phone, and asks you if one is unclear.</p></li>
@@ -107,19 +153,23 @@ At: JAHEZ</p>
         <div class="band-head">
           <p class="kicker">Inside Yuba</p>
           <h2 class="band-title">The app’s own screens, with sample numbers.</h2>
+          <div class="shot-nav">
+            <button type="button" class="prev" aria-label="Previous screens"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <button type="button" class="next" aria-label="Next screens"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
         </div>
-        <div class="shots">
-          <figure><img src="/shots/en/1-home.jpg" width="600" height="1304" loading="lazy" alt="Yuba's Home: spent this month, your pace and the months before"><figcaption>Your month at a glance</figcaption></figure>
-          <figure><img src="/shots/en/2-activity.jpg" width="600" height="1304" loading="lazy" alt="Activity: every transaction by day"><figcaption>Every transaction</figcaption></figure>
-          <figure><img src="/shots/en/3-trend.jpg" width="600" height="1304" loading="lazy" alt="Trend: the week's spending and where it went"><figcaption>Where it went</figcaption></figure>
-          <figure><img src="/shots/en/4-day-by-day.jpg" width="600" height="1304" loading="lazy" alt="Day by day: each day against your average"><figcaption>Day by day</figcaption></figure>
-          <figure><img src="/shots/en/5-add.jpg" width="600" height="1304" loading="lazy" alt="Add: cash spending by hand"><figcaption>Add cash spending</figcaption></figure>
+        <div class="shots" role="group" aria-label="App screens">
+          <a class="shot" href="/shots/en/1-home.jpg"><figure><img src="/shots/en/1-home.jpg" width="600" height="1304" loading="lazy" alt="Yuba's Home: spent this month, your pace and the months before" decoding="async"><figcaption>Your month at a glance</figcaption></figure></a>
+          <a class="shot" href="/shots/en/2-activity.jpg"><figure><img src="/shots/en/2-activity.jpg" width="600" height="1304" loading="lazy" alt="Activity: every transaction by day" decoding="async"><figcaption>Every transaction</figcaption></figure></a>
+          <a class="shot" href="/shots/en/3-trend.jpg"><figure><img src="/shots/en/3-trend.jpg" width="600" height="1304" loading="lazy" alt="Trend: the week's spending and where it went" decoding="async"><figcaption>Where it went</figcaption></figure></a>
+          <a class="shot" href="/shots/en/4-day-by-day.jpg"><figure><img src="/shots/en/4-day-by-day.jpg" width="600" height="1304" loading="lazy" alt="Day by day: each day against your average" decoding="async"><figcaption>Day by day</figcaption></figure></a>
+          <a class="shot" href="/shots/en/5-add.jpg"><figure><img src="/shots/en/5-add.jpg" width="600" height="1304" loading="lazy" alt="Add: cash spending by hand" decoding="async"><figcaption>Add cash spending</figcaption></figure></a>
         </div>
       </div>
 
       <div class="band promise" id="privacy">
         <span class="lock" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg></span>
-        <div><h2>Your spending stays on your phone.</h2><p>No bank login. No account. No ads. Nothing about your money reaches us unless you send it. <a href="/privacy">The full privacy promise ›</a></p></div>
+        <div><h2>Your spending stays on your phone.</h2><p>No bank login. No account. No ads. Nothing about your money reaches us unless you send it. <a href="/privacy/">The full privacy promise ›</a></p></div>
       </div>
 
       <div class="band" id="price">
@@ -141,12 +191,12 @@ At: JAHEZ</p>
       <div class="band qa" id="faq">
         <h2 class="band-title">Questions</h2>
         <div class="faq">
-          <details><summary>Does Yuba read all my messages?</summary><p>No. On iPhone, Shortcuts hands Yuba only texts that contain SAR, SR or ريال. Yuba never sees the rest, and what it does get, it reads on your phone.</p></details>
-          <details><summary>Which banks does it work with?</summary><p>All Saudi banks. Yuba is made for the transaction texts Saudi banks send, in Arabic and English, and it keeps learning new wordings from the people who use it. When a text says money moved in a wording Yuba hasn’t learned yet, it asks you instead of guessing. Teach Yuba, in Settings, writes you an email with that wording, every digit a 9 and people’s names cut to initials, for you to send us.</p></details>
-          <details><summary>Why the Shortcuts app on iPhone?</summary><p>Apple doesn’t let apps read your messages. Instead, Apple’s Shortcuts app, set up once, hands Yuba the bank texts that mention riyals as they arrive. It’s Apple’s own tool, and you stay in control: you can turn it off any time. It takes around 2 minutes.</p></details>
-          <details><summary>Does anything leave my phone?</summary><p>Yuba sends nothing about your money. It has no server and no account. It goes online to check for its own updates, and memberships run through Apple. Like every app, Yuba is included in your phone’s own backup, under your Apple Account. <a href="/privacy">Every detail is on the privacy page.</a></p></details>
-          <details><summary>What if I change phones?</summary><p>Your history lives on your phone and in your phone’s own backup, so a new iPhone restored from that backup should bring it along. You can also export every transaction as a spreadsheet at any time.</p></details>
-          <details><summary>Is Yuba on Android?</summary><p>Coming soon. On Android there is no Shortcuts step: one permission does it.</p></details>
+          <details id="q-messages"><summary>Does Yuba read all my messages?</summary><p>No. On iPhone, Shortcuts hands Yuba only texts that contain SAR, SR or ريال. Yuba never sees the rest, and what it does get, it reads on your phone.</p></details>
+          <details id="q-banks"><summary>Which banks does it work with?</summary><p>All Saudi banks. Yuba is made for the transaction texts Saudi banks send, in Arabic and English, and it keeps learning new wordings from the people who use it. When a text says money moved in a wording Yuba hasn’t learned yet, it asks you instead of guessing. Teach Yuba, in Settings, writes you an email with that wording, every digit a 9 and people’s names cut to initials, for you to send us.</p></details>
+          <details id="q-shortcuts"><summary>Why the Shortcuts app on iPhone?</summary><p>Apple doesn’t let apps read your messages. Instead, Apple’s Shortcuts app, set up once, hands Yuba the bank texts that mention riyals as they arrive. It’s Apple’s own tool, and you stay in control: you can turn it off any time. It takes around 2 minutes.</p></details>
+          <details id="q-online"><summary>Does anything leave my phone?</summary><p>Yuba sends nothing about your money. It has no server and no account. It goes online to check for its own updates, and memberships run through Apple. Like every app, Yuba is included in your phone’s own backup, under your Apple Account. <a href="/privacy/">Every detail is on the privacy page.</a></p></details>
+          <details id="q-phones"><summary>What if I change phones?</summary><p>Your history lives on your phone and in your phone’s own backup, so a new iPhone restored from that backup should bring it along. You can also export every transaction as a spreadsheet at any time.</p></details>
+          <details id="q-android"><summary>Is Yuba on Android?</summary><p>Coming soon. On Android there is no Shortcuts step: one permission does it.</p></details>
         </div>
       </div>
     </section>
@@ -203,7 +253,7 @@ At: JAHEZ</p>
       </div>
 
       <div class="band how" id="how-ar">
-        <div class="band-head"><p class="kicker">كيف يعمل</p></div>
+        <div class="band-head"><h2 class="kicker">كيف يعمل</h2></div>
         <ol class="steps">
           <li><span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7" width="19" height="10" rx="5"/><circle cx="16.5" cy="12" r="2.6"/></svg></span><span class="num">01</span><h3>جهّزه مرة واحدة</h3><p>على iPhone عبر تطبيق «الاختصارات» من Apple، وعلى Android يكفي إذن واحد.</p></li>
           <li><span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19M6.5 14.5h4"/></svg></span><span class="num">02</span><h3>ادفع كعادتك</h3><p>يقرأ يوبا رسائل بنكك الجديدة، من أي بنك سعودي، على جوالك، وإن لم تتضح له رسالة سألك عنها.</p></li>
@@ -215,19 +265,23 @@ At: JAHEZ</p>
         <div class="band-head">
           <p class="kicker">داخل يوبا</p>
           <h2 class="band-title">شاشات التطبيق نفسه، بأرقام تجريبية.</h2>
+          <div class="shot-nav">
+            <button type="button" class="prev" aria-label="الشاشات السابقة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <button type="button" class="next" aria-label="الشاشات التالية"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
         </div>
-        <div class="shots">
-          <figure><img src="/shots/ar/1-home.jpg" width="600" height="1304" loading="lazy" alt="الرئيسية في يوبا: مصاريف هذا الشهر ووتيرتك والأشهر السابقة"><figcaption>شهرك في لمحة</figcaption></figure>
-          <figure><img src="/shots/ar/2-activity.jpg" width="600" height="1304" loading="lazy" alt="العمليات: كل عملية حسب اليوم"><figcaption>كل عملياتك</figcaption></figure>
-          <figure><img src="/shots/ar/3-trend.jpg" width="600" height="1304" loading="lazy" alt="الاتجاه: مصاريف الأسبوع وأين ذهبت"><figcaption>أين ذهبت فلوسك</figcaption></figure>
-          <figure><img src="/shots/ar/4-day-by-day.jpg" width="600" height="1304" loading="lazy" alt="يومًا بيوم: كل يوم مقارنة بمتوسطك"><figcaption>يومًا بيوم</figcaption></figure>
-          <figure><img src="/shots/ar/5-add.jpg" width="600" height="1304" loading="lazy" alt="إضافة: مصاريفك النقدية بيدك"><figcaption>النقد، تضيفه بنفسك</figcaption></figure>
+        <div class="shots" role="group" aria-label="شاشات التطبيق">
+          <a class="shot" href="/shots/ar/1-home.jpg"><figure><img src="/shots/ar/1-home.jpg" width="600" height="1304" loading="lazy" alt="الرئيسية في يوبا: مصاريف هذا الشهر ووتيرتك والأشهر السابقة" decoding="async"><figcaption>شهرك في لمحة</figcaption></figure></a>
+          <a class="shot" href="/shots/ar/2-activity.jpg"><figure><img src="/shots/ar/2-activity.jpg" width="600" height="1304" loading="lazy" alt="العمليات: كل عملية حسب اليوم" decoding="async"><figcaption>كل عملياتك</figcaption></figure></a>
+          <a class="shot" href="/shots/ar/3-trend.jpg"><figure><img src="/shots/ar/3-trend.jpg" width="600" height="1304" loading="lazy" alt="الاتجاه: مصاريف الأسبوع وأين ذهبت" decoding="async"><figcaption>أين ذهبت فلوسك</figcaption></figure></a>
+          <a class="shot" href="/shots/ar/4-day-by-day.jpg"><figure><img src="/shots/ar/4-day-by-day.jpg" width="600" height="1304" loading="lazy" alt="يومًا بيوم: كل يوم مقارنة بمتوسطك" decoding="async"><figcaption>يومًا بيوم</figcaption></figure></a>
+          <a class="shot" href="/shots/ar/5-add.jpg"><figure><img src="/shots/ar/5-add.jpg" width="600" height="1304" loading="lazy" alt="إضافة: مصاريفك النقدية بيدك" decoding="async"><figcaption>النقد، تضيفه بنفسك</figcaption></figure></a>
         </div>
       </div>
 
       <div class="band promise" id="privacy-ar">
         <span class="lock" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg></span>
-        <div><h2>بياناتك المالية تبقى على جوالك.</h2><p>لا ربط بحسابك البنكي، ولا تسجيل، ولا إعلانات، ولا يصلنا شيء يخص أموالك إلا ما ترسله بنفسك. <a href="/privacy">وعد الخصوصية كاملًا ›</a></p></div>
+        <div><h2>بياناتك المالية تبقى على جوالك.</h2><p>لا ربط بحسابك البنكي، ولا تسجيل، ولا إعلانات، ولا يصلنا شيء يخص أموالك إلا ما ترسله بنفسك. <a href="/privacy/">وعد الخصوصية كاملًا ›</a></p></div>
       </div>
 
       <div class="band" id="price-ar">
@@ -249,28 +303,28 @@ At: JAHEZ</p>
       <div class="band qa" id="faq-ar">
         <h2 class="band-title">أسئلة شائعة</h2>
         <div class="faq">
-          <details><summary>هل يقرأ يوبا كل رسائلي؟</summary><p>لا. على iPhone لا تمرّر «الاختصارات» إلى يوبا إلا الرسائل التي فيها SAR أو SR أو «ريال». بقية رسائلك لا يراها يوبا، وما يصله يقرؤه على جوالك نفسه.</p></details>
-          <details><summary>مع أي البنوك يعمل يوبا؟</summary><p>مع كل البنوك السعودية. يوبا مصمَّم لرسائل العمليات التي ترسلها البنوك السعودية، بالعربية والإنجليزية، ويتعلّم الصياغات الجديدة باستمرار من مستخدميه. وإذا قالت رسالة إن مالًا تحرّك بصياغة لم يتعلّمها بعد، يسألك بدل أن يخمّن. ومن «الإعدادات › علِّم يوبا» يمكنك أن ترسل لنا تلك الصياغة، وكل رقم فيها 9، وأسماء الأشخاص مختصرة إلى أحرفها الأولى.</p></details>
-          <details><summary>لماذا تطبيق «الاختصارات» على iPhone؟</summary><p>لأن Apple لا تسمح للتطبيقات بقراءة رسائلك. تُعدّ «الاختصارات» مرة واحدة، فتسلّم يوبا رسائل البنك التي تذكر الريال حين تصل. هي أداة من Apple نفسها، والأمر بيدك: توقفها متى شئت. والإعداد يستغرق نحو دقيقتين.</p></details>
-          <details><summary>هل يخرج شيء من جوالي؟</summary><p>يوبا لا يرسل شيئًا يخص أموالك، فلا خادم له ولا حساب. يتصل بالإنترنت ليتحقق من تحديثاته، والعضوية تتم عبر Apple. وككل تطبيق، يُحفظ يوبا ضمن النسخة الاحتياطية لجوالك تحت حساب Apple الخاص بك. <a href="/privacy">التفاصيل كلها في صفحة الخصوصية.</a></p></details>
-          <details><summary>ماذا لو غيّرت جوالي؟</summary><p>سجلّك محفوظ على جوالك وفي نسخته الاحتياطية، فإذا استعدت جوالك الجديد من تلك النسخة فالمفترض أن يعود معه. ويمكنك أيضًا في أي وقت تصدير كل عملياتك إلى جدول بيانات.</p></details>
-          <details><summary>هل يوبا متوفر على Android؟</summary><p>في الطريق. وعلى Android لا حاجة لتطبيق «الاختصارات»: يكفي إذن واحد.</p></details>
+          <details id="q-messages-ar"><summary>هل يقرأ يوبا كل رسائلي؟</summary><p>لا. على iPhone لا تمرّر «الاختصارات» إلى يوبا إلا الرسائل التي فيها SAR أو SR أو «ريال». بقية رسائلك لا يراها يوبا، وما يصله يقرؤه على جوالك نفسه.</p></details>
+          <details id="q-banks-ar"><summary>مع أي البنوك يعمل يوبا؟</summary><p>مع كل البنوك السعودية. يوبا مصمَّم لرسائل العمليات التي ترسلها البنوك السعودية، بالعربية والإنجليزية، ويتعلّم الصياغات الجديدة باستمرار من مستخدميه. وإذا قالت رسالة إن مالًا تحرّك بصياغة لم يتعلّمها بعد، يسألك بدل أن يخمّن. ومن «الإعدادات › علِّم يوبا» يمكنك أن ترسل لنا تلك الصياغة، وكل رقم فيها 9، وأسماء الأشخاص مختصرة إلى أحرفها الأولى.</p></details>
+          <details id="q-shortcuts-ar"><summary>لماذا تطبيق «الاختصارات» على iPhone؟</summary><p>لأن Apple لا تسمح للتطبيقات بقراءة رسائلك. تُعدّ «الاختصارات» مرة واحدة، فتسلّم يوبا رسائل البنك التي تذكر الريال حين تصل. هي أداة من Apple نفسها، والأمر بيدك: توقفها متى شئت. والإعداد يستغرق نحو دقيقتين.</p></details>
+          <details id="q-online-ar"><summary>هل يخرج شيء من جوالي؟</summary><p>يوبا لا يرسل شيئًا يخص أموالك، فلا خادم له ولا حساب. يتصل بالإنترنت ليتحقق من تحديثاته، والعضوية تتم عبر Apple. وككل تطبيق، يُحفظ يوبا ضمن النسخة الاحتياطية لجوالك تحت حساب Apple الخاص بك. <a href="/privacy/">التفاصيل كلها في صفحة الخصوصية.</a></p></details>
+          <details id="q-phones-ar"><summary>ماذا لو غيّرت جوالي؟</summary><p>سجلّك محفوظ على جوالك وفي نسخته الاحتياطية، فإذا استعدت جوالك الجديد من تلك النسخة فالمفترض أن يعود معه. ويمكنك أيضًا في أي وقت تصدير كل عملياتك إلى جدول بيانات.</p></details>
+          <details id="q-android-ar"><summary>هل يوبا متوفر على Android؟</summary><p>في الطريق. وعلى Android لا حاجة لتطبيق «الاختصارات»: يكفي إذن واحد.</p></details>
         </div>
       </div>
     </section>
 
     <nav class="doors">
-      <a class="door" href="/privacy">
+      <a class="door" href="/privacy/">
         <span class="t"><span lang="en">Privacy</span><span lang="ar">الخصوصية</span></span>
         <span class="sub"><span lang="en">The promise, precisely</span><span lang="ar">وعدنا بالتفصيل</span></span>
         <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a class="door" href="/terms">
+      <a class="door" href="/terms/">
         <span class="t"><span lang="en">Terms</span><span lang="ar">الشروط</span></span>
         <span class="sub"><span lang="en">Membership and the rules</span><span lang="ar">العضوية وشروط الاستخدام</span></span>
         <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a class="door" href="/support">
+      <a class="door" href="/support/">
         <span class="t"><span lang="en">Support</span><span lang="ar">الدعم</span></span>
         <span class="sub">support@yuba-app.com</span>
         <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
@@ -283,63 +337,12 @@ At: JAHEZ</p>
     <span><span lang="en">Built in Saudi Arabia</span><span lang="ar">صُنع في السعودية</span></span>
     <span class="quiet"><span lang="en">No cookies, no trackers.</span><span lang="ar">لا كوكيز ولا تتبّع.</span></span>
     <span class="spacer"></span>
-    <a href="/privacy"><span lang="en">Privacy</span><span lang="ar">الخصوصية</span></a>
-    <a href="/terms"><span lang="en">Terms</span><span lang="ar">الشروط</span></a>
-    <a href="/support"><span lang="en">Support</span><span lang="ar">الدعم</span></a>
+    <a href="/privacy/"><span lang="en">Privacy</span><span lang="ar">الخصوصية</span></a>
+    <a href="/terms/"><span lang="en">Terms</span><span lang="ar">الشروط</span></a>
+    <a href="/support/"><span lang="en">Support</span><span lang="ar">الدعم</span></a>
     <a href="mailto:support@yuba-app.com">support@yuba-app.com</a>
   </footer>
 
 </div>
-<script>
-(function () {
-  var el = document.documentElement;
-  function apply(ar) {
-    if (ar) el.setAttribute('data-lang', 'ar'); else el.removeAttribute('data-lang');
-    el.lang = ar ? 'ar' : 'en';
-  }
-  var s = null;
-  try { s = localStorage.getItem('yuba-lang'); } catch (e) {}
-  // No choice saved yet: a phone set to Arabic opens the Arabic page.
-  if (s !== 'ar' && s !== 'en') {
-    try { if (/^ar(?:-|$)/i.test((navigator.languages && navigator.languages[0]) || navigator.language || '')) s = 'ar'; } catch (e) {}
-  }
-  try {
-    var q = new URLSearchParams(location.search).get('lang');
-    if (q === 'ar' || q === 'en') {
-      s = q;
-      try { localStorage.setItem('yuba-lang', q); } catch (e) {}
-      history.replaceState(null, '', location.pathname);
-    }
-  } catch (e) {}
-  apply(s === 'ar');
-  // On a phone the five screens sit in a sideways row; lazy loading only fetches the ones
-  // already in that row's view, so the last one could arrive blank. Fetch the visible
-  // language's five as the row comes near.
-  if ('IntersectionObserver' in window) {
-    var near = new IntersectionObserver(function (es) {
-      es.forEach(function (x) {
-        if (!x.isIntersecting) return;
-        x.target.querySelectorAll('img[loading="lazy"]').forEach(function (i) { i.loading = 'eager'; });
-        near.unobserve(x.target);
-      });
-    }, { rootMargin: '1500px 0px' });
-    document.querySelectorAll('.shots').forEach(function (r) { near.observe(r); });
-  }
-  // The header's jump links point at the English ids; in Arabic, go to the Arabic twin.
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest('.jump a');
-    if (a && el.getAttribute('data-lang') === 'ar') {
-      var t = document.getElementById(a.getAttribute('href').slice(1) + '-ar');
-      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-      return;
-    }
-    var b = e.target.closest('.langbtn');
-    if (!b) return;
-    var ar = el.getAttribute('data-lang') !== 'ar';
-    apply(ar);
-    try { localStorage.setItem('yuba-lang', ar ? 'ar' : 'en'); } catch (e) {}
-  });
-})();
-</script>
 </body>
 </html>
