@@ -934,3 +934,9 @@ table:not(.facts) td:first-child { color: var(--ink); }
 @keyframes yb-grow { from { scale: 0 1; } }
 @keyframes yb-ping { 0% { box-shadow: 0 0 0 0 rgba(95, 184, 163, 0.45); } 70%, 100% { box-shadow: 0 0 0 12px rgba(95, 184, 163, 0); } }
 @keyframes yb-pulse { 0% { opacity: 0.9; scale: 0.6; } 70%, 100% { opacity: 0; scale: 1.6; } }
+
+/* The App Store badge (Apple's own artwork, self-hosted), in place of the coming-soon status once Yuba is live. */
+.store { display: inline-block; line-height: 0; border-radius: 9px; }
+.store img { display: block; width: 150px; height: auto; }
+.store:focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; }
+@media (min-width: 980px) { .store img { width: 168px; } }
