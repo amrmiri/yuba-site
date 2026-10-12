@@ -321,3 +321,47 @@ footer.site .spacer { flex: 1; }
   .promise h2 { font-size: 19px; }
   .home[lang="ar"] .promise h2 { font-size: 18px; }
 }
+
+/* ── home, full width (Amr, 12 Oct 2026: "half page, not the full view") ──
+   Only the home page widens; privacy, terms and support keep the 680px reading
+   column. On a computer the headline and the picture share the first screen;
+   steps, the promise and the three doors run across the full width. */
+.page.wide { max-width: 1240px; padding-left: 40px; padding-right: 40px; }
+.hero-art .stage { margin-top: 52px; }
+
+@media (min-width: 980px) {
+  .home { padding-top: 0; }
+  .hero-grid {
+    display: grid; grid-template-columns: minmax(0, 1fr) 560px; gap: 56px; align-items: center;
+    min-height: min(calc(100vh - 170px), 600px); padding: 16px 0 0;
+  }
+  .home h1 { font-size: 54px; line-height: 1.06; }
+  .home[lang="ar"] h1 { font-size: 44px; line-height: 1.45; }
+  .home .tick { width: 72px; margin: 26px 0 24px; }
+  .home[lang="ar"] .tick { margin: 16px 0 20px; }
+  .home .lede { font-size: 19px; }
+  .home[lang="ar"] .lede { font-size: 18px; }
+  .get { margin-top: 32px; }
+  .soon { font-size: 15.5px; padding: 13px 20px; }
+  .hero-art .stage { margin-top: 0; grid-template-columns: 180px 34px 1fr; }
+  .hero-art .pace { font-size: 12.4px; }
+  .home[lang="ar"] .hero-art .pace { font-size: 12.4px; }
+  .steps { margin-top: 56px; gap: 48px; }
+  .steps h3 { font-size: 21px; }
+  .home[lang="ar"] .steps h3 { font-size: 20px; }
+  .steps p { font-size: 16px; }
+  .home[lang="ar"] .steps p { font-size: 15px; }
+  .promise { margin-top: 64px; gap: 20px; }
+  .promise .lock { width: 56px; height: 56px; }
+  .promise .lock svg { width: 25px; height: 25px; }
+  .promise h2 { font-size: 28px; }
+  .home[lang="ar"] .promise h2 { font-size: 25px; }
+  .promise p { font-size: 17px; }
+  .home[lang="ar"] .promise p { font-size: 16px; }
+  .page.wide .doors { margin-top: 64px; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .page.wide footer.site { margin-top: 64px; }
+}
+
+@media (max-width: 560px) {
+  .page.wide { padding-left: 18px; padding-right: 18px; }
+}
