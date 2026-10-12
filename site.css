@@ -83,15 +83,15 @@ header.site {
   gap: 16px; padding: 6px 0 30px;
 }
 
-.lockup { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.lockup { display: flex; align-items: center; gap: 13px; text-decoration: none; direction: ltr; }
 .lockup .latin {
-  font-family: var(--latin); font-weight: 700; font-size: 17px;
+  font-family: var(--latin); font-weight: 700; font-size: 22px;
   letter-spacing: 0.22em; color: var(--ink);
 }
-.lockup .dot { width: 5px; height: 5px; background: var(--red); flex: none; }
+.lockup .dot { width: 7px; height: 7px; background: var(--red); flex: none; }
 .lockup .arabic {
   /* The wordmark exception: Kufi steps UP ~1.25× so the two marks read equal. */
-  font-family: var(--kufi); font-weight: 700; font-size: 19px;
+  font-family: var(--kufi); font-weight: 700; font-size: 26px;
   color: var(--ink); line-height: 1;
 }
 
@@ -459,4 +459,41 @@ footer.site .quiet { color: var(--ink3); }
   .home[lang="ar"] .band-title { font-size: 21px; }
   .promise { margin-top: 56px; }
   .faq summary { font-size: 15.5px; }
+}
+
+/* ── the logo, bigger on a computer; the reading pages, full width (12 Oct 2026) ── */
+@media (min-width: 980px) {
+  header.site { padding: 10px 0 34px; }
+  .lockup { gap: 15px; }
+  .lockup .latin { font-size: 27px; }
+  .lockup .dot { width: 8px; height: 8px; }
+  .lockup .arabic { font-size: 32px; }
+
+  .doc-grid { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 80px; align-items: start; }
+  .doc-body { max-width: 780px; font-size: 16px; }
+  .doc-body h1 { font-size: 42px; letter-spacing: -0.03em; margin-bottom: 12px; }
+  .doc-body h2 { font-size: 20px; margin-top: 46px; }
+  [lang="ar"] .doc-body h1 { font-size: 36px; letter-spacing: 0; }
+  [lang="ar"] .doc-body h2 { font-size: 18.5px; }
+  .toc { position: sticky; top: 28px; padding-top: 10px; }
+  .toc-title { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink3); margin: 0 0 14px; }
+  [lang="ar"] .toc-title { letter-spacing: 0; font-size: 13px; }
+  .toc ol { list-style: none; margin: 0; padding: 0; border-inline-start: 1px solid var(--hairline); }
+  .toc li { margin: 0; }
+  .toc ol a {
+    display: block; padding: 7px 0 7px 16px; margin-inline-start: -1px; border-inline-start: 2px solid transparent;
+    color: var(--ink2); font-size: 13.5px; line-height: 1.45; text-decoration: none;
+  }
+  [lang="ar"] .toc ol a { padding: 6px 16px 6px 0; font-size: 13.5px; line-height: 1.8; }
+  .toc ol a:hover { color: var(--ink); text-decoration: none; }
+  .toc ol a.on { color: var(--ink); border-inline-start-color: var(--red); }
+  .toc-home { display: inline-block; margin-top: 22px; font-size: 13px; color: var(--ink3); }
+}
+@media (max-width: 979px) {
+  .toc { display: none; }
+}
+@media (max-width: 560px) {
+  .lockup .latin { font-size: 19px; }
+  .lockup .arabic { font-size: 22px; }
+  .lockup .dot { width: 6px; height: 6px; }
 }

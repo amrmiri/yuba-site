@@ -31,7 +31,7 @@ function renderTable(lines) {
   return `    <table>\n${thead}\n${tbody}\n    </table>`;
 }
 
-function renderMd(md) {
+function renderMd(md, prefix = 's', toc = []) {
   const blocks = md.split(/\n{2,}/).map((b) => b.trim()).filter(Boolean);
   const out = [];
   for (const b of blocks) {
@@ -40,7 +40,12 @@ function renderMd(md) {
       out.push(`    <p class="date">${inline(b.replace(/^\*\*|\*\*$/g, ''))}</p>`);
       continue;
     }
-    if (b.startsWith('## ')) { out.push(`    <h2>${inline(b.slice(3))}</h2>`); continue; }
+    if (b.startsWith('## ')) {
+      const id = `${prefix}-${toc.length + 1}`;
+      toc.push({ id, text: b.slice(3) });
+      out.push(`    <h2 id="${id}">${inline(b.slice(3))}</h2>`);
+      continue;
+    }
     if (b.startsWith('|')) { out.push(renderTable(b.split('\n'))); continue; }
     if (/^- /.test(b)) {
       out.push(`    <ul>\n${b.split('\n').map((l) => `      <li>${inline(l.replace(/^- /, ''))}</li>`).join('\n')}\n    </ul>`);
@@ -53,6 +58,26 @@ function renderMd(md) {
     out.push(`    <p>${inline(b).replace(/ {2}\n|\n/g, '<br>')}</p>`);
   }
   return out.join('\n');
+}
+
+// One language's page: the contents column (built from its ## headings) beside the text.
+function docBody(lang, prefix, tocTitle, homeLabel) {
+  const toc = [];
+  const body = renderMd(lang.md, prefix, toc);
+  const items = toc.map((t) => `        <li><a href="#${t.id}">${inline(t.text)}</a></li>`).join('\n');
+  return `    <div class="doc-grid">
+      <aside class="toc">
+        <p class="toc-title">${tocTitle}</p>
+        <ol>
+${items}
+        </ol>
+        <a class="toc-home" href="/">${homeLabel}</a>
+      </aside>
+      <div class="doc-body">
+    <h1>${esc(lang.title)}</h1>
+${body}
+      </div>
+    </div>`;
 }
 
 const template = (key, page) => `<!doctype html>
@@ -83,7 +108,7 @@ const template = (key, page) => `<!doctype html>
 <noscript><style>[lang="ar"]{display:revert !important}.langbtn{display:none}</style></noscript>
 </head>
 <body>
-<div class="page">
+<div class="page wide doc">
 
   <header class="site">
     <a class="lockup" href="/">
@@ -96,12 +121,10 @@ const template = (key, page) => `<!doctype html>
 
   <main>
     <article lang="en">
-    <h1>${esc(page.en.title)}</h1>
-${renderMd(page.en.md)}
+${docBody(page.en, 'en', 'On this page', 'Yuba home')}
     </article>
     <article lang="ar" dir="rtl">
-    <h1>${esc(page.ar.title)}</h1>
-${renderMd(page.ar.md)}
+${docBody(page.ar, 'ar', 'في هذه الصفحة', 'الصفحة الرئيسية')}
     </article>
   </main>
 
@@ -138,6 +161,18 @@ ${renderMd(page.ar.md)}
     }
   } catch (e) {}
   apply(s === 'ar');
+  if ('IntersectionObserver' in window) {
+    var marks = {};
+    document.querySelectorAll('.toc a').forEach(function (a) { marks[a.getAttribute('href').slice(1)] = a; });
+    var seen = new IntersectionObserver(function (es) {
+      es.forEach(function (x) {
+        if (!x.isIntersecting || !marks[x.target.id]) return;
+        document.querySelectorAll('.toc a.on').forEach(function (a) { a.classList.remove('on'); });
+        marks[x.target.id].classList.add('on');
+      });
+    }, { rootMargin: '0px 0px -70% 0px' });
+    document.querySelectorAll('.doc-body h2[id]').forEach(function (h) { seen.observe(h); });
+  }
   document.addEventListener('click', function (e) {
     var b = e.target.closest('.langbtn');
     if (!b) return;
