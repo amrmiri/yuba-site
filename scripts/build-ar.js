@@ -50,8 +50,9 @@ function twin(page) {
   h = swap(h, /<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${SITE}${ar}">`, 'og:url');
   h = swap(h, /<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${attr(titleAr)}">`, 'og:title');
   h = swap(h, /<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${attr(desc)}">`, 'og:description');
-  h = swap(h, /<meta property="og:locale" content="en_US">\n<meta property="og:locale:alternate" content="ar_SA">/,
-    '<meta property="og:locale" content="ar_SA">\n<meta property="og:locale:alternate" content="en_US">', 'og:locale');
+  // \r?\n: a Windows checkout (core.autocrlf) holds CRLF, and the twin must build there too.
+  h = swap(h, /<meta property="og:locale" content="en_US">(\r?\n)<meta property="og:locale:alternate" content="ar_SA">/,
+    '<meta property="og:locale" content="ar_SA">$1<meta property="og:locale:alternate" content="en_US">', 'og:locale');
   // links to the four pages go to their Arabic addresses (assets like /site.css are untouched)
   h = h.replace(/href="\/((?:privacy|terms|support)\/)?(#[^"]*)?"/g, (x, p, hash) => `href="/ar/${p || ''}${hash || ''}"`);
 
