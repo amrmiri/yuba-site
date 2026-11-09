@@ -107,7 +107,7 @@
       </nav>
       <div class="doc-body">
     <h1>Yuba Privacy Policy</h1>
-    <p class="date">Effective 21 October 2026</p>
+    <p class="date">Effective 9 November 2026</p>
     <p>Yuba builds your spending ledger from your own bank messages, on your phone, and keeps it there. We have no server, so nothing you do in Yuba can reach us. This page writes that down in the detail a reviewer and a careful reader both need. The promise is precise on purpose.</p>
     <h2 id="the-short-version">The short version</h2>
     <table class="facts">
@@ -129,16 +129,18 @@
     <p>None about your money. Your messages, balances, and history are processed and stored only on your device. We cannot see them, receive them, or recover them. The one thing Yuba sends by itself is the update check under Network traffic — the app's version (with a random install number only on iPhone versions before 1.0.2), never anything about your money. The one copy of your data that can exist off your phone sits inside your own phone backup, under your Apple ID or Google account (see Backups).</p>
     <h2 id="third-parties">Third parties</h2>
     <p>No one receives your data. No analytics SDKs, no ad networks, no data brokers. Nothing is sold, shared, or disclosed to anyone — there is nothing on our side to share.</p>
-    <p>The app talks to exactly two outside services, and neither gets anything about your money: Expo's update service and, on iPhone, Apple's App Store. Both are listed under Network traffic.</p>
+    <p>The app talks to exactly two outside services, and neither gets anything about your money: Expo's update service and the store you installed from, which is Apple's App Store on iPhone and Google Play on Android. Both are listed under Network traffic.</p>
     <h2 id="network-traffic">Network traffic</h2>
     <p>The complete list of what Yuba sends over the internet:</p>
     <ol>
       <li><strong>The update check.</strong> Each time Yuba opens or comes back to the screen, it asks Expo's update service (u.expo.dev) whether a newer version exists. The request carries the app's version numbers and the phone's platform. On Android, and on iPhone from version 1.0.2, it names no install: the install field is sent blank. Earlier iPhone versions also send a random number that marks the install — made on the phone, tied to no account or Apple ID, new again after a reinstall. Like any internet request it shows Expo your phone's internet address, and if Yuba ever crashed at start-up, the next check also carries that error text so a broken update can be rolled back. Expo never sees a transaction, a bank or a name.</li>
       <li><strong>Apple's App Store (iPhone).</strong> Yuba asks Apple for the membership's prices and whether you are a member. When you buy, Apple's own payment sheet appears, and the payment runs entirely between you and Apple.</li>
+      <li><strong>Google Play (Android).</strong> Yuba asks Google Play for the membership's prices and whether you are a member. When you buy, Google Play's own payment sheet appears, and the payment runs entirely between you and Google.</li>
     </ol>
     <p>That is the whole list. Links you tap — these pages, or, on iPhone, the iCloud link that adds the YUBA shortcut during setup — open outside Yuba.</p>
     <h2 id="payments">Payments</h2>
     <p>Yuba's membership is billed by Apple through the App Store, under Apple's privacy policy. We have no server, so a purchase sends us nothing: no name, no card details, no Apple ID, no identity. Apple handles payment, renewal, and refunds. We never learn who our members are, and we keep no customer records — Apple holds the transaction.</p>
+    <p>On Android, the membership is billed by Google Play, under Google's privacy policy. A purchase tells Yuba on your phone only whether you are a member, and we never receive your card details. Google's sales reports to developers list each order's number, plan, date and the buyer's approximate location (city, region, postcode and country). We keep no customer records of our own, and none of that can be linked to what is in Yuba.</p>
     <h2 id="backups">Backups</h2>
     <p>Your ledger rides your own iPhone backup — your Apple ID, Apple's encryption. A standard iCloud backup is encrypted with keys Apple holds; it is end-to-end encrypted only when Advanced Data Protection is on. We hold no copy. Restore your phone and Yuba comes back with it; nothing in that passes through us. iPhone Settings can leave Yuba out of the backup if you prefer.</p>
     <p>On Android, your ledger rides your own Google backup when backup is switched on in Android's settings; Google encrypts it, and on recent Android versions with your screen lock as well. We hold no copy, and nothing in it passes through us.</p>
@@ -207,7 +209,7 @@
       </nav>
       <div class="doc-body">
     <h1>سياسة خصوصية يوبا</h1>
-    <p class="date">تسري اعتبارًا من 21 أكتوبر 2026</p>
+    <p class="date">تسري اعتبارًا من 9 نوفمبر 2026</p>
     <p>يوبا يبني سجلّ مصاريفك من رسائل بنكك أنت، على جوالك، ويبقيه هناك. لا خادم لدينا، فلا شيء تفعله في يوبا يمكن أن يصل إلينا. هذه الصفحة تدوّن ذلك بالتفصيل الذي يحتاجه مراجع المتجر ويحتاجه القارئ المتأنّي على السواء. والوعد دقيق عن قصد.</p>
     <h2 id="the-short-version-ar">الخلاصة</h2>
     <table class="facts">
@@ -229,16 +231,18 @@
     <p>لا شيء عن مالك. رسائلك وأرصدتك وسجلّك تُعالَج وتُخزَّن على جهازك وحده. لا نستطيع رؤيتها، ولا استقبالها، ولا استعادتها. والشيء الوحيد الذي يرسله يوبا من تلقاء نفسه هو فحص التحديث المذكور تحت «حركة الشبكة» — رقم إصدار التطبيق (ومعه رقم تثبيت عشوائي في إصدارات iPhone السابقة للإصدار 1.0.2 وحدها)، ولا شيء عن مالك أبدًا. والنسخة الوحيدة من بياناتك التي قد توجد خارج جوالك تقع داخل النسخة الاحتياطية لجوالك، تحت Apple ID أو حساب Google الخاص بك (انظر «النسخ الاحتياطي»).</p>
     <h2 id="third-parties-ar">الجهات الخارجية</h2>
     <p>لا أحد يستقبل بياناتك. لا حِزم تحليلات، ولا شبكات إعلانات، ولا وسطاء بيانات. لا شيء يُباع أو يُشارَك أو يُكشَف لأي جهة — إذ لا شيء عندنا أصلًا ليُشارَك.</p>
-    <p>يتصل التطبيق بخدمتين خارجيتين اثنتين لا غير، ولا يصل إلى أيٍّ منهما شيء عن مالك: خدمة التحديثات لدى Expo، ومتجر App Store من Apple على iPhone. وكلتاهما مذكورة تحت «حركة الشبكة».</p>
+    <p>يتصل التطبيق بخدمتين خارجيتين اثنتين لا غير، ولا يصل إلى أيٍّ منهما شيء عن مالك: خدمة التحديثات لدى Expo، والمتجر الذي ثبّتّ منه التطبيق، وهو App Store من Apple على iPhone وGoogle Play على Android. وكلتاهما مذكورة تحت «حركة الشبكة».</p>
     <h2 id="network-traffic-ar">حركة الشبكة</h2>
     <p>القائمة الكاملة لما يرسله يوبا عبر الإنترنت:</p>
     <ol>
       <li><strong>فحص التحديث.</strong> في كل مرة يُفتح فيها يوبا أو يعود إلى الشاشة، يسأل خدمة تحديثات Expo (u.expo.dev) إن كانت هناك نسخة أحدث. يحمل الطلب أرقام إصدار التطبيق ونوع الجهاز. وعلى Android، وعلى iPhone ابتداءً من الإصدار 1.0.2، لا يميّز الطلب أي تثبيت: يُرسَل حقل التثبيت فارغًا. أما إصدارات iPhone السابقة فترسل أيضًا رقمًا عشوائيًا يميّز التثبيت: يُنشأ على الجوال، ولا يرتبط بأي حساب ولا بحساب Apple الخاص بك، ويتجدد بعد إعادة التثبيت. وكأي طلب عبر الإنترنت، يظهر لـ Expo عنوان الإنترنت لجوالك، وإن تعطّل يوبا يومًا عند التشغيل، يحمل التحقق التالي نص ذلك الخطأ أيضًا ليُسحب التحديث المعطوب. ولا يرى Expo أبدًا عملية أو بنكًا أو اسمًا.</li>
       <li><strong>متجر App Store من Apple (على iPhone).</strong> يسأل يوبا Apple عن أسعار العضوية وهل أنت عضو. وعندما تشتري، تظهر واجهة الدفع من Apple نفسها، ويجري الدفع كله بينك وبين Apple.</li>
+      <li><strong>Google Play (على Android).</strong> يسأل يوبا Google Play عن أسعار العضوية وهل أنت عضو. وعندما تشتري، تظهر واجهة الدفع من Google Play نفسها، ويجري الدفع كله بينك وبين Google.</li>
     </ol>
     <p>هذه هي القائمة كاملة. أما الروابط التي تضغطها — هذه الصفحات، أو رابط iCloud الذي يضيف اختصار YUBA أثناء الإعداد على iPhone — فتُفتح خارج يوبا.</p>
     <h2 id="payments-ar">المدفوعات</h2>
     <p>عضوية يوبا تحصّلها Apple عبر App Store، وتحت سياسة خصوصية Apple. لا خادم لدينا، فالشراء لا يرسل إلينا شيئًا: لا اسم، ولا بيانات بطاقة، ولا Apple ID، ولا هوية. Apple تتولى الدفع والتجديد والاسترداد. نحن لا نعرف أبدًا من أعضاؤنا، ولا نحتفظ بأي سجلات للعملاء — العملية كلها بيد Apple.</p>
+    <p>وعلى Android، تحصّل Google Play العضوية، وتحت سياسة خصوصية Google. لا يعرف يوبا على جوالك من الشراء إلا هل أنت عضو، ولا تصلنا بيانات بطاقتك أبدًا. وتذكر تقارير المبيعات التي تقدّمها Google للمطوّرين رقم كل طلب وخطته وتاريخه وموقع المشتري التقريبي (المدينة والمنطقة والرمز البريدي والدولة). ولا نحتفظ بسجلات عملاء من عندنا، ولا يمكن ربط شيء من ذلك بما في يوبا.</p>
     <h2 id="backups-ar">النسخ الاحتياطي</h2>
     <p>سجلّك ينتقل ضمن نسخة iPhone الاحتياطية الخاصة بك — بحساب Apple ID الخاص بك، وتشفير Apple. ونسخة iCloud الاحتياطية العادية مشفّرة بمفاتيح تحتفظ بها Apple، ولا تكون مشفّرة من طرف إلى طرف إلا حين تكون «الحماية المتقدمة للبيانات» مفعّلة. لا نحتفظ بأي نسخة. حين تستعيد جوالك يعود يوبا معه؛ ولا شيء من ذلك يمرّ عبرنا. ويمكن لإعدادات iPhone استثناء يوبا من النسخة الاحتياطية إن شئت.</p>
     <p>وعلى Android، ينتقل سجلّك ضمن نسخة Google الاحتياطية الخاصة بك حين يكون النسخ الاحتياطي مفعّلًا في إعدادات Android؛ وتشفّرها Google، وفي إصدارات Android الحديثة بقفل شاشتك أيضًا. لا نحتفظ بأي نسخة، ولا شيء منها يمرّ عبرنا.</p>
